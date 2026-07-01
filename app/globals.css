@@ -346,9 +346,13 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14
   .hero::before { font-size: 82px; bottom: 4px; }
   .hero-inner { padding: 96px 20px 34px; align-items: start; }
   .hero-layout { gap: 22px; }
-  .hero-title { font-size: clamp(34px, 11.5vw, 46px); line-height: 1; white-space: nowrap; }
+  .hero-copy { margin-left: auto; margin-right: auto; justify-items: center; }
+  .hero-title { width: 100%; font-size: clamp(34px, 11.5vw, 46px); line-height: 1; text-align: center; white-space: nowrap; }
   .mobile-title-break { display: block; }
   .word { margin-right: .15em; }
+  .hero-title .word:nth-of-type(3),
+  .hero-title .word:nth-of-type(5),
+  .hero-title .word:nth-of-type(7) { margin-right: 0; }
   .hero-lead { font-size: 16px; line-height: 1.5; }
   .hero-actions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); align-items: stretch; gap: 10px; }
   .cta-btn { width: 100%; min-width: 0; min-height: 50px; justify-content: space-between; padding: 4px 5px 4px 14px; gap: 6px; }
@@ -394,11 +398,23 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14
   .recent-card { margin-top: 20px; padding: 15px; }
   .recent-head strong { font-size: 20px; }
   .recent-head span { font-size: 12px; }
+  .review-grid { gap: 12px; scroll-padding-left: 30px; padding: 2px 72px 14px 30px; margin-left: -30px; margin-right: -20px; }
+  .review-card { flex-basis: min(74vw, 315px); }
   .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .metric { min-height: 104px; padding: 14px; }
   .metric b { font-size: 32px; }
   .preview-title { font-size: 13px; text-align: right; }
   .step { grid-template-columns: 44px 1fr; }
+}
+
+@media (max-width: 390px) {
+  .hero-title { font-size: clamp(36px, 10.4vw, 40px); }
+  .hero-actions { grid-template-columns: minmax(0, .92fr) minmax(0, .88fr); gap: 8px; width: min(100%, 320px); margin-left: auto; margin-right: auto; }
+  .cta-btn { min-height: 44px; padding: 3px 4px 3px 12px; }
+  .cta-text { font-size: 11px; }
+  .cta-circle { width: 30px; height: 30px; flex-basis: 30px; }
+  .cta-circle svg { width: 13px; height: 13px; }
+  .ghost-link { min-height: 44px; padding: 0 8px; font-size: 11px; }
 }
 
 @media (min-width: 1800px) {
