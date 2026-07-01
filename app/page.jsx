@@ -28,7 +28,7 @@ export default function Home() {
   const [status, setStatus] = useState("");
   const [sending, setSending] = useState(false);
   const heroWords = useMemo(
-    () => "Run your PG business without spreadsheets".split(" "),
+    () => "The Smart Way to Manage Your PG".split(" "),
     []
   );
 
@@ -88,7 +88,6 @@ export default function Home() {
 
       <header className={`site-header ${menuOpen ? "menu-active" : ""}`}>
         <a className="brand desktop-brand" href="#top" aria-label="Stack home">
-          <span className="brand-mark">S</span>
           <span>Stack</span>
         </a>
         <nav className="nav-pill" aria-label="Primary navigation">
@@ -107,6 +106,7 @@ export default function Home() {
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span />
+          <span />
         </button>
       </header>
 
@@ -114,7 +114,6 @@ export default function Home() {
         {menuLinks.map((link) => (
           <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{link}</a>
         ))}
-        <a href="mailto:hello@stackpg.com" className="small-link">hello@stackpg.com</a>
       </aside>
 
       <main id="top">
@@ -123,9 +122,9 @@ export default function Home() {
           <div className="hero-inner">
             <div className="hero-layout">
               <div className="hero-copy">
-                <h1 className="hero-title" aria-label="Run your PG business without spreadsheets">
+                <h1 className="hero-title" aria-label="The Smart Way to Manage Your PG">
                   {heroWords.map((word, index) => (
-                    <span className="word" style={{ animationDelay: `${1 + index * 0.045}s` }} key={`${word}-${index}`}>{word}</span>
+                    <span className={`word ${index === 1 || index === 2 ? "hero-highlight" : ""}`} style={{ animationDelay: `${1 + index * 0.045}s` }} key={`${word}-${index}`}>{word}</span>
                   ))}
                 </h1>
                 <p className="hero-lead">Track PGs, rooms, beds, tenants, rent, documents, complaints, staff, and reports from one fast webapp built for daily operations.</p>
@@ -388,7 +387,6 @@ export default function Home() {
             </div>
             <footer>
               <span>© {new Date().getFullYear()} Stack PG Management</span>
-              <span>Secure enquiry flow for Vercel hosting</span>
             </footer>
           </div>
         </section>
