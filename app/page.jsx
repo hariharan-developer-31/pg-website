@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 
 const features = [
   ["PG Management", ["Add/Edit/Delete PG", "Multiple PG Support", "PG Details", "Amenities", "Floor Management"]],
@@ -124,7 +124,10 @@ export default function Home() {
               <div className="hero-copy">
                 <h1 className="hero-title" aria-label="The Smart Way to Manage Your PG">
                   {heroWords.map((word, index) => (
-                    <span className={`word ${index === 1 || index === 2 ? "hero-highlight" : ""}`} style={{ animationDelay: `${1 + index * 0.045}s` }} key={`${word}-${index}`}>{word}</span>
+                    <Fragment key={`${word}-${index}`}>
+                      <span className={`word ${index === 1 || index === 2 ? "hero-highlight" : ""}`} style={{ animationDelay: `${1 + index * 0.045}s` }}>{word}</span>
+                      {(index === 2 || index === 4) && <br className="mobile-title-break" />}
+                    </Fragment>
                   ))}
                 </h1>
                 <p className="hero-lead">Track PGs, rooms, beds, tenants, rent, documents, complaints, staff, and reports from one fast webapp built for daily operations.</p>
