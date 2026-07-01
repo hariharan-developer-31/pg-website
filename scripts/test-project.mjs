@@ -69,7 +69,8 @@ async function runSourceTests() {
   assert.match(css, /\.word\s*\{[^}]*margin-right/s, "hero word reveal should preserve visible spacing");
   assert.match(css, /\.cta-btn\s*\{[^}]*background:\s*var\(--ink\)[^}]*color:\s*var\(--paper\)/s, "primary hero CTA should have strong contrast");
   assert.match(css, /\.ghost-link\s*\{[^}]*border:[^}]*background:\s*rgba\(255,255,255,.6\)/s, "secondary hero CTA should be button-like and visible");
-  assert.match(css, /@media \(max-width: 520px\)\s*\{[\s\S]*?\.hero-actions\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.08fr\)\s*minmax\(0,\s*\.92fr\)/s, "mobile hero CTAs should stay in one row");
+  assert.match(css, /@media \(max-width: 520px\)\s*\{[\s\S]*?\.hero-actions\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(0,\s*1fr\)/s, "mobile hero CTAs should stay in one row");
+  assert.match(css, /@media \(max-width: 520px\)\s*\{[\s\S]*?\.ghost-link\s*\{[^}]*white-space:\s*nowrap/s, "mobile secondary CTA should not wrap awkwardly");
   assert.match(css, /@media \(max-width: 520px\)\s*\{[\s\S]*?\.hero-layout\s*\{[^}]*gap:\s*22px/s, "mobile hero should keep balanced space above dashboard preview");
   assert.doesNotMatch(css, /\.brand span:last-child\s*\{[^}]*display:\s*none/s, "mobile brand name should remain visible");
   assert.match(css, /\.hero-console\s*\{[^}]*width:\s*min\(100%,\s*610px\)/s, "console preview should have stable desktop width");
