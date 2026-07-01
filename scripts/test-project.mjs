@@ -54,15 +54,23 @@ async function runSourceTests() {
 
   assert.match(page, /Run your PG business without spreadsheets/, "hero headline should be PG-management focused");
   assert.match(page, /hero-console/, "hero should include PG operations console preview");
-  assert.match(page, /Operations Overview|Total PGs|Occupancy health|Pending rent|Complaint assigned/, "hero should show PG management dashboard signals");
+  assert.match(page, /Operations Overview|Total PGs|Occupancy health|Pending rent|UPI payment received/, "hero should show PG management dashboard signals");
+  assert.doesNotMatch(page, /<span>StayGrid PG<\/span>\s*<strong>Operations Overview<\/strong>/, "console title label should be removed");
+  const consoleFlow = page.match(/<div className="console-flow">([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>\s*<\/div>\s*<div className="phone-showcase/)?.[1] || "";
+  assert.doesNotMatch(consoleFlow, /Complaint assigned/, "hero console complaint row should be removed");
+  assert.doesNotMatch(page + css, /hero-badge|PG owner dashboard/, "hero badge should not be present");
   assert.doesNotMatch(page, /Akash/, "phone preview should not mention Akash");
-  assert.match(page, /className="header-cta" href="#enquiry"/, "desktop enquiry CTA should exist in the header");
+  assert.match(page, /className="nav-cta" href="#enquiry"/, "desktop enquiry CTA should be inside centered nav pill");
   assert.match(page, /site-header \$\{menuOpen \? "menu-active" : ""\}/, "header should expose active menu state");
   assert.match(page, /const navLinks = \["Dashboard", "Features", "Security", "Reviews"\]/, "center nav should not include enquiry");
   assert.doesNotMatch(page, /hero-trust|hero-stats|className="eyebrow"/, "removed hero chips, stat cards, and eyebrow badge should not return");
   assert.doesNotMatch(page + css, /\bprice\b|\bplans\b|TODO|console\.log|Runevery/i, "source should not contain pricing, placeholders, or broken hero text");
   assert.match(css, /\.hero-title\s*\{[^}]*clamp\(/s, "hero title should use responsive clamp sizing");
   assert.match(css, /\.word\s*\{[^}]*margin-right/s, "hero word reveal should preserve visible spacing");
+  assert.match(css, /\.cta-btn\s*\{[^}]*background:\s*var\(--ink\)[^}]*color:\s*var\(--paper\)/s, "primary hero CTA should have strong contrast");
+  assert.match(css, /\.ghost-link\s*\{[^}]*border:[^}]*background:\s*rgba\(255,255,255,.6\)/s, "secondary hero CTA should be button-like and visible");
+  assert.match(css, /@media \(max-width: 520px\)\s*\{[\s\S]*?\.hero-actions\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.08fr\)\s*minmax\(0,\s*\.92fr\)/s, "mobile hero CTAs should stay in one row");
+  assert.match(css, /@media \(max-width: 520px\)\s*\{[\s\S]*?\.hero-layout\s*\{[^}]*gap:\s*22px/s, "mobile hero should keep balanced space above dashboard preview");
   assert.doesNotMatch(css, /\.brand span:last-child\s*\{[^}]*display:\s*none/s, "mobile brand name should remain visible");
   assert.match(css, /\.hero-console\s*\{[^}]*width:\s*min\(100%,\s*610px\)/s, "console preview should have stable desktop width");
   assert.match(css, /\.phone-showcase\s*\{[^}]*display:\s*none/s, "old phone preview should be hidden");
@@ -74,8 +82,10 @@ async function runSourceTests() {
   assert.match(css, /\.hero-media\s*\{[^}]*#f8fcff[^}]*#edf7ff/s, "hero background should use app-style blue-white colors");
   assert.match(css, /@keyframes consoleFloat/, "console preview should have CSS animation");
   assert.match(css, /@keyframes ringPulse/, "occupancy ring should have CSS animation");
+  assert.match(css, /\.site-header\s*\{[^}]*justify-content:\s*center/s, "desktop navbar should be centered");
   assert.match(css, /\.nav-pill\s*\{[^}]*display:\s*flex/s, "desktop navbar should be visible by default");
-  assert.match(css, /\.header-cta\s*\{[^}]*justify-self:\s*end/s, "desktop enquiry CTA should sit at the right side");
+  assert.match(css, /\.desktop-brand,\s*\.header-cta\s*\{[^}]*display:\s*none/s, "desktop should use a single centered nav pill");
+  assert.match(css, /\.nav-cta\s*\{[^}]*background:\s*var\(--paper\)/s, "desktop enquiry CTA should be inside nav pill");
   assert.match(css, /\.site-header\.menu-active \.brand\s*\{[^}]*color:\s*var\(--paper\)/s, "mobile open menu should keep brand text visible");
   assert.match(css, /\.site-header\.menu-active \.brand-mark\s*\{[^}]*background:\s*var\(--paper\)[^}]*color:\s*var\(--ink\)/s, "mobile open menu should keep logo visible");
   assert.match(css, /\.menu-btn\s*\{[^}]*display:\s*none/s, "hamburger should be hidden on desktop");

@@ -87,12 +87,16 @@ export default function Home() {
       </div>
 
       <header className={`site-header ${menuOpen ? "menu-active" : ""}`}>
-        <a className="brand" href="#top" aria-label="StayGrid home">
+        <a className="brand desktop-brand" href="#top" aria-label="Stack home">
           <span className="brand-mark">S</span>
-          <span>StayGrid PG</span>
+          <span>Stack</span>
         </a>
         <nav className="nav-pill" aria-label="Primary navigation">
+          <a className="nav-logo" href="#top" aria-label="Stack home">
+            <span>Stack</span>
+          </a>
           {navLinks.map((link) => <a key={link} href={`#${link.toLowerCase()}`}>{link}</a>)}
+          <a className="nav-cta" href="#enquiry">Enquiry</a>
         </nav>
         <a className="header-cta" href="#enquiry">Enquiry</a>
         <button
@@ -110,7 +114,7 @@ export default function Home() {
         {menuLinks.map((link) => (
           <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{link}</a>
         ))}
-        <a href="mailto:hello@staygridpg.com" className="small-link">hello@staygridpg.com</a>
+        <a href="mailto:hello@stackpg.com" className="small-link">hello@stackpg.com</a>
       </aside>
 
       <main id="top">
@@ -119,7 +123,6 @@ export default function Home() {
           <div className="hero-inner">
             <div className="hero-layout">
               <div className="hero-copy">
-                <div className="hero-badge"><span />PG owner dashboard</div>
                 <h1 className="hero-title" aria-label="Run your PG business without spreadsheets">
                   {heroWords.map((word, index) => (
                     <span className="word" style={{ animationDelay: `${1 + index * 0.045}s` }} key={`${word}-${index}`}>{word}</span>
@@ -142,7 +145,6 @@ export default function Home() {
                 <div className="console-shell">
                   <div className="console-nav">
                     <div>
-                      <span>StayGrid PG</span>
                       <strong>Operations Overview</strong>
                     </div>
                     <b>Live</b>
@@ -170,7 +172,6 @@ export default function Home() {
                   <div className="console-flow">
                     <div><span>Tenant joined</span><b>New</b></div>
                     <div><span>UPI payment received</span><b>Paid</b></div>
-                    <div><span>Complaint assigned</span><b>Open</b></div>
                   </div>
                 </div>
               </div>
@@ -386,7 +387,7 @@ export default function Home() {
               </form>
             </div>
             <footer>
-              <span>© {new Date().getFullYear()} StayGrid PG Management</span>
+              <span>© {new Date().getFullYear()} Stack PG Management</span>
               <span>Secure enquiry flow for Vercel hosting</span>
             </footer>
           </div>

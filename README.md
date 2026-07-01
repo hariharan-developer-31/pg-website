@@ -1,4 +1,4 @@
-# StayGrid PG Management Next.js Website
+# Stack PG Management Next.js Website
 
 Next.js PG management webapp showcase with a Vercel-ready enquiry API route.
 

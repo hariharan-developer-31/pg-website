@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "StayGrid PG Management",
+  title: "Stack PG Management",
   description:
     "A secure PG management webapp for owners, managers, rooms, beds, tenants, rent, payments, documents, complaints, staff, reports, and enquiries."
 };
