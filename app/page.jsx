@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useMemo, useState } from "react";
+import logo from "./assets/logo/logo.png";
 
 const features = [
   ["PG Management", ["Add/Edit/Delete PG", "Multiple PG Support", "PG Details", "Amenities", "Floor Management"]],
@@ -87,12 +88,12 @@ export default function Home() {
       </div>
 
       <header className={`site-header ${menuOpen ? "menu-active" : ""}`}>
-        <a className="brand desktop-brand" href="#top" aria-label="Stack home">
-          <span>Stack</span>
+        <a className="brand desktop-brand" href="#top" aria-label="PG Management home">
+          <img className="brand-logo-image" src={logo.src} alt="PG Management logo" width="1024" height="1024" />
         </a>
         <nav className="nav-pill" aria-label="Primary navigation">
-          <a className="nav-logo" href="#top" aria-label="Stack home">
-            <span>Stack</span>
+          <a className="nav-logo" href="#top" aria-label="PG Management home">
+            <img className="brand-logo-image" src={logo.src} alt="PG Management logo" width="1024" height="1024" />
           </a>
           {navLinks.map((link) => <a key={link} href={`#${link.toLowerCase()}`}>{link}</a>)}
           <a className="nav-cta" href="#enquiry">Enquiry</a>

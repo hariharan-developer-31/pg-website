@@ -51,6 +51,7 @@ async function runApiTests() {
 async function runSourceTests() {
   const page = await readFile("app/page.jsx", "utf8");
   const css = await readFile("app/globals.css", "utf8");
+  const layout = await readFile("app/layout.jsx", "utf8");
 
   assert.match(page, /The Smart Way to Manage Your PG/, "hero headline should use the requested PG-management copy");
   assert.match(page, /index === 1 \|\| index === 2 \? "hero-highlight" : ""/, "Smart Way words should be highlighted");
@@ -64,6 +65,12 @@ async function runSourceTests() {
   assert.doesNotMatch(page, /Akash/, "phone preview should not mention Akash");
   assert.match(page, /className="nav-cta" href="#enquiry"/, "desktop enquiry CTA should be inside centered nav pill");
   assert.doesNotMatch(page, /<span className="brand-mark">S<\/span>/, "mobile and tablet brand should not show the round S icon");
+  assert.match(page, /import logo from "\.\/assets\/logo\/logo\.png"/, "navbar should use the uploaded logo asset");
+  assert.match(page, /className="brand-logo-image" src=\{logo\.src\}/, "navbar should render image logo instead of text brand");
+  assert.doesNotMatch(page, /<span>Stack<\/span>/, "navbar should not render the Stack name stack");
+  assert.match(layout, /url:\s*"\/favicon\.ico"/, "metadata should expose the ICO favicon");
+  assert.match(layout, /shortcut:\s*"\/favicon\.ico"/, "browser shortcut icon should use favicon.ico");
+  assert.match(layout, /apple:\s*"\/apple-icon\.png"/, "Apple touch icon should use the logo image");
   assert.match(page, /className=\{`menu-btn \$\{menuOpen \? "open" : ""\}`\}[\s\S]*?<span \/>\s*<span \/>/s, "mobile menu button should render three-bar hamburger structure");
   assert.match(page, /site-header \$\{menuOpen \? "menu-active" : ""\}/, "header should expose active menu state");
   assert.match(page, /const navLinks = \["Dashboard", "Features", "Security", "Reviews"\]/, "center nav should not include enquiry");
@@ -101,8 +108,9 @@ async function runSourceTests() {
   assert.match(css, /\.nav-cta\s*\{[^}]*background:\s*var\(--paper\)/s, "desktop enquiry CTA should be inside nav pill");
   assert.match(css, /@media \(max-width: 980px\)\s*\{[\s\S]*?\.site-header\s*\{[^}]*background:\s*rgba\(17,17,17,.92\)/s, "mobile and tablet navbar should use a dark readable background");
   assert.match(css, /@media \(max-width: 980px\)\s*\{[\s\S]*?\.site-header\s*\{[^}]*border-radius:\s*0/s, "mobile and tablet navbar should not have rounded corners");
-  assert.match(css, /@media \(max-width: 980px\)\s*\{[\s\S]*?\.desktop-brand span:last-child\s*\{[^}]*animation:\s*brandShine/s, "mobile and tablet brand should use the animated blue text effect");
-  assert.match(css, /@media \(max-width: 980px\)\s*\{[\s\S]*?\.desktop-brand\s*\{[^}]*font-size:\s*23px/s, "mobile and tablet brand should be prominent");
+  assert.match(css, /\.brand-logo-image\s*\{[^}]*width:\s*44px[^}]*height:\s*44px[^}]*object-fit:\s*contain/s, "navbar logo image should have stable dimensions");
+  assert.doesNotMatch(css, /content:\s*"Stack"|brandShine|brandGlitter|brandSpark/, "navbar CSS should not recreate the Stack text effect");
+  assert.match(css, /@media \(max-width: 980px\)\s*\{[\s\S]*?\.desktop-brand\s*\{[^}]*width:\s*48px[^}]*height:\s*48px/s, "mobile and tablet logo should be prominent");
   assert.match(css, /\.menu-btn\s*\{[^}]*border:\s*0[^}]*border-radius:\s*0[^}]*background:\s*transparent/s, "mobile hamburger should not have a background surface");
   assert.match(css, /\.menu-btn span,\s*\.menu-btn::before\s*\{[^}]*width:\s*27px[^}]*height:\s*3px[^}]*background:\s*var\(--blue\)/s, "mobile hamburger bars should match the brand color");
   assert.match(css, /@media \(max-width: 980px\)\s*\{[\s\S]*?\.menu-panel\s*\{[^}]*left:\s*0[^}]*right:\s*0[^}]*width:\s*auto/s, "mobile and tablet menu panel should align with the dark navbar");
