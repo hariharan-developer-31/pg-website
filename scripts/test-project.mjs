@@ -141,6 +141,8 @@ async function runSourceTests() {
   assert.match(page, /Vehicle Service Management System/, "project 4 must be Vehicle Service Management System");
   assert.match(page, /SaaS Business Dashboard/, "project 5 must be SaaS Business Dashboard");
   assert.match(page, /Campaign Management Web Application/, "project 6 must be Campaign Management Web Application");
+  assert.match(page, /On-Demand Delivery & Booking App/, "mobile application project must be present");
+  assert.match(page, /Health & Fitness Member App/, "mobile fitness project must be present");
 
   // Tech stack section removed as requested
   assert.doesNotMatch(page, /Powered by Modern Technologies\./, "tech stack section must be removed as requested");

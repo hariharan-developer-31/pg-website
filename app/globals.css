@@ -27,6 +27,10 @@ html {
   scroll-behavior: smooth;
 }
 
+section, [id] {
+  scroll-margin-top: clamp(80px, 12vh, 120px);
+}
+
 body {
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: var(--mist);
@@ -45,7 +49,7 @@ button, input, textarea, select {
 }
 
 /* =========================================================================
-   1. BRAND OPENING SPLASH
+   1. BRAND OPENING BRICKS SPLASH
    ========================================================================= */
 .splash {
   position: fixed;
@@ -53,45 +57,111 @@ button, input, textarea, select {
   z-index: 9999;
   pointer-events: none;
   overflow: hidden;
-  animation: splashHide 0.3s ease forwards;
-  animation-delay: 1.25s;
+  display: flex;
+  flex-direction: column;
+  animation: splashHide 0.35s ease forwards;
+  animation-delay: 1.65s;
+}
+
+.splash-center-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  animation: splashEmblemFade 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.45s;
+}
+
+.splash-logo-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 14px 40px rgba(17, 17, 17, 0.28), 0 0 0 4px rgba(244, 241, 232, 0.6);
+}
+
+.splash-logo-image {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.splash-brand-name {
+  color: var(--ink);
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.splash-brand-tag {
+  color: rgba(17, 17, 17, 0.75);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 2px;
 }
 
 .splash-row {
   display: flex;
   width: 100%;
-  height: 50%;
+  height: 25%;
 }
 
 .splash-box {
-  width: 20%;
+  flex: 1;
   height: 100%;
   background: var(--blue);
+  border: 1px solid rgba(244, 241, 232, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset -1px -1px 0 rgba(17, 17, 17, 0.08);
+  position: relative;
+}
+
+.splash-row-offset .splash-box:nth-child(even) {
+  background: #6bbcd6;
 }
 
 .splash-row-top .splash-box {
-  animation: splashTop 0.9s cubic-bezier(0.96, -0.02, 0.38, 1.01) forwards;
+  animation: splashTop 0.85s cubic-bezier(0.96, -0.02, 0.38, 1.01) forwards;
+  animation-delay: calc(0.45s + var(--col, 0) * 0.07s);
 }
 
 .splash-row-bottom .splash-box {
-  animation: splashBottom 0.9s cubic-bezier(0.96, -0.02, 0.38, 1.01) forwards;
+  animation: splashBottom 0.85s cubic-bezier(0.96, -0.02, 0.38, 1.01) forwards;
+  animation-delay: calc(0.45s + var(--col, 0) * 0.07s);
 }
 
-.splash-box:nth-child(2) { animation-delay: 0.05s; }
-.splash-box:nth-child(3) { animation-delay: 0.1s; }
-.splash-box:nth-child(4) { animation-delay: 0.15s; }
-.splash-box:nth-child(5) { animation-delay: 0.2s; }
-
 @keyframes splashTop {
-  to { transform: translateY(-100%); }
+  to {
+    transform: translateY(-101%);
+  }
 }
 
 @keyframes splashBottom {
-  to { transform: translateY(100%); }
+  to {
+    transform: translateY(101%);
+  }
+}
+
+@keyframes splashEmblemFade {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
 }
 
 @keyframes splashHide {
-  to { opacity: 0; visibility: hidden; }
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 /* =========================================================================
@@ -2341,6 +2411,123 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
+/* Policy Modal & Menu Enhancements */
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 48;
+}
+
+.footer-policy-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #a39c94;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.footer-policy-btn:hover {
+  color: var(--paper);
+}
+
+.policy-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(17, 17, 17, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.2s ease;
+}
+
+.policy-modal-card {
+  background: var(--paper);
+  color: var(--ink);
+  max-width: 680px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  padding: clamp(24px, 4vw, 36px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--line);
+  position: relative;
+}
+
+.policy-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.policy-modal-header h3 {
+  font-size: clamp(20px, 3vw, 24px);
+  font-weight: 800;
+}
+
+.policy-modal-close {
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.policy-modal-close:hover {
+  color: var(--ink);
+  background: var(--mist);
+}
+
+.policy-modal-body p {
+  color: #3a3834;
+  line-height: 1.65;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.policy-modal-body h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 18px 0 8px;
+  color: var(--ink);
+}
+
+.policy-modal-body ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+  color: #3a3834;
+  line-height: 1.65;
+  font-size: 14.5px;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -2351,7 +2538,8 @@ input:focus, textarea:focus, select:focus {
   }
 
   .splash {
-    display: none;
+    animation-duration: 0.2s !important;
+    animation-delay: 0.4s !important;
   }
 
   .reveal, .word {

@@ -275,6 +275,30 @@ const portfolioProjects = [
     metrics: "Digital Job Cards · Inventory Flow"
   },
   {
+    id: "mobile-delivery-app",
+    name: "On-Demand Delivery & Booking App",
+    category: "Mobile Applications",
+    type: "Mobile Applications",
+    description:
+      "High-performance cross-platform mobile application featuring live GPS tracking, instant order dispatching, and push notification pipelines.",
+    tech: ["React Native", "Node.js", "Firebase", "WebSockets"],
+    isConcept: true,
+    accent: "blue",
+    metrics: "iOS & Android · Real-Time GPS"
+  },
+  {
+    id: "mobile-fitness-app",
+    name: "Health & Fitness Member App",
+    category: "Mobile Applications",
+    type: "Mobile Applications",
+    description:
+      "Feature-rich mobile fitness suite featuring workout logs, real-time member check-ins, biometric health sync, and offline storage.",
+    tech: ["Flutter", "GraphQL", "Supabase", "HealthKit"],
+    isConcept: true,
+    accent: "green",
+    metrics: "Offline-First · Biometric Auth"
+  },
+  {
     id: "saas-dashboard",
     name: "SaaS Business Dashboard",
     category: "SaaS Platforms",
@@ -382,11 +406,81 @@ const faqs = [
   }
 ];
 
+const policies = {
+  privacy: {
+    title: "Privacy Policy",
+    content: (
+      <>
+        <p>
+          At StackWebApp, we hold your business confidentiality, proprietary data, and project intellectual property in the highest regard.
+        </p>
+        <h4>Information We Collect</h4>
+        <p>
+          We only collect information directly submitted through our project consultation and enquiry forms (such as your name, business email, phone number, and project specifications). This information is solely used to scope, quote, and communicate regarding your product development.
+        </p>
+        <h4>Data Security & Confidentiality</h4>
+        <p>
+          We never sell, rent, or trade your personal or business information to third parties. All codebase repositories, database credentials, API keys, and business logic shared during development are strictly safeguarded under standard non-disclosure practices.
+        </p>
+        <h4>Hosting & Cookies</h4>
+        <p>
+          Our web applications use standard performance and security monitoring tools without invasive tracking cookies. You may contact us at any time at hariharansankar4@gmail.com to request deletion of your contact records.
+        </p>
+      </>
+    )
+  },
+  terms: {
+    title: "Terms & Conditions",
+    content: (
+      <>
+        <p>
+          Welcome to StackWebApp. By engaging our digital engineering, website, web application, or custom software development services, you agree to the following terms.
+        </p>
+        <h4>Project Scope & Milestones</h4>
+        <p>
+          Each project begins with a clear scope specification, architectural roadmap, and milestone schedule. Any feature additions or substantial changes beyond the agreed roadmap are scoped via mutual agreement.
+        </p>
+        <h4>Intellectual Property & Code Ownership</h4>
+        <p>
+          Upon final milestone payment completion, 100% full intellectual property rights, source code, database architectures, and design assets developed specifically for your project belong entirely to you and your business.
+        </p>
+        <h4>Client Collaboration</h4>
+        <p>
+          Timely provision of brand assets, third-party credentials (e.g. domain DNS, payment gateways, cloud providers), and milestone feedback ensures projects deliver on schedule.
+        </p>
+      </>
+    )
+  },
+  refund: {
+    title: "Refund Policy",
+    content: (
+      <>
+        <p>
+          We are committed to delivering high-performance, precision-engineered digital products with complete transparency at every development stage.
+        </p>
+        <h4>Milestone-Based Approvals</h4>
+        <p>
+          To ensure total alignment, our projects operate on staged deliverables (Discovery & Wireframing → Engineering Sprint → QA Testing & Deployment). Each milestone is reviewed and approved by you before moving forward.
+        </p>
+        <h4>Cancellation & Refunds</h4>
+        <p>
+          If a project is cancelled prior to the commencement of active engineering sprints, initial consultation deposits minus administrative discovery costs are refunded. In the rare event of dissatisfaction with a specific milestone before code handoff, we prioritize rework or pro-rata adjustments based on deliverables completed.
+        </p>
+        <h4>Post-Launch Support</h4>
+        <p>
+          All production deployments include a standard post-launch warranty period to resolve any functional bugs, ensuring your product runs flawlessly in live environments.
+        </p>
+      </>
+    )
+  }
+};
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All Projects");
   const [openFaq, setOpenFaq] = useState(0);
   const [selectedService, setSelectedService] = useState("");
+  const [activePolicyModal, setActivePolicyModal] = useState(null);
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState("");
   const [sending, setSending] = useState(false);
@@ -395,6 +489,25 @@ export default function Home() {
     () => "We Build Digital Products That Move Businesses Forward.".split(" "),
     []
   );
+
+  useEffect(() => {
+    if (menuOpen || activePolicyModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        setActivePolicyModal(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen, activePolicyModal]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -471,14 +584,37 @@ export default function Home() {
     <>
       {/* Brand Opening Curtain Animation */}
       <div className="splash" aria-hidden="true">
+        <div className="splash-center-badge">
+          <div className="splash-logo-circle">
+            <img
+              className="splash-logo-image"
+              src={logo.src}
+              alt="StackWebApp"
+              width="64"
+              height="64"
+            />
+          </div>
+          <span className="splash-brand-name">STACKWEBAPP</span>
+          <span className="splash-brand-tag">DIGITAL PRODUCT STUDIO</span>
+        </div>
         <div className="splash-row splash-row-top">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div className="splash-box" key={`top-${i}`} />
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div className="splash-box" key={`top-1-${i}`} style={{ "--col": i }} />
+          ))}
+        </div>
+        <div className="splash-row splash-row-top splash-row-offset">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div className="splash-box" key={`top-2-${i}`} style={{ "--col": i }} />
+          ))}
+        </div>
+        <div className="splash-row splash-row-bottom splash-row-offset">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div className="splash-box" key={`bot-1-${i}`} style={{ "--col": i }} />
           ))}
         </div>
         <div className="splash-row splash-row-bottom">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div className="splash-box" key={`bottom-${i}`} />
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div className="splash-box" key={`bot-2-${i}`} style={{ "--col": i }} />
           ))}
         </div>
       </div>
@@ -530,6 +666,13 @@ export default function Home() {
       </header>
 
       {/* Mobile Slide-down Menu */}
+      {menuOpen && (
+        <div
+          className="menu-backdrop"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
       <aside className={`menu-panel ${menuOpen ? "open" : ""}`} aria-label="Mobile menu">
         {navLinks.map((link) => (
           <a
@@ -1179,9 +1322,33 @@ export default function Home() {
                 <div className="footer-col">
                   <strong>Quick Links</strong>
                   <ul>
-                    <li><a href="#top">Privacy Policy</a></li>
-                    <li><a href="#top">Terms & Conditions</a></li>
-                    <li><a href="#top">Refund Policy</a></li>
+                    <li>
+                      <button
+                        type="button"
+                        className="footer-policy-btn"
+                        onClick={() => setActivePolicyModal("privacy")}
+                      >
+                        Privacy Policy
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        className="footer-policy-btn"
+                        onClick={() => setActivePolicyModal("terms")}
+                      >
+                        Terms &amp; Conditions
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        className="footer-policy-btn"
+                        onClick={() => setActivePolicyModal("refund")}
+                      >
+                        Refund Policy
+                      </button>
+                    </li>
                   </ul>
                 </div>
 
@@ -1217,6 +1384,37 @@ export default function Home() {
           </div>
         </footer>
       </main>
+
+      {/* Interactive Policy Modal */}
+      {activePolicyModal && policies[activePolicyModal] && (
+        <div
+          className="policy-modal-overlay"
+          onClick={() => setActivePolicyModal(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={policies[activePolicyModal].title}
+        >
+          <div
+            className="policy-modal-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="policy-modal-header">
+              <h3>{policies[activePolicyModal].title}</h3>
+              <button
+                type="button"
+                className="policy-modal-close"
+                onClick={() => setActivePolicyModal(null)}
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="policy-modal-body">
+              {policies[activePolicyModal].content}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
