@@ -8,97 +8,84 @@ const services = [
     id: "website-development",
     num: "01",
     title: "Business Website Development",
-    description:
-      "Professional, responsive, and SEO-friendly websites that establish your digital presence, communicate your brand, and convert visitors into customers.",
-    features: [
-      "Corporate Websites",
-      "Business Websites",
-      "Landing Pages",
-      "Portfolio Websites",
-      "Website Redesign",
-      "SEO-Friendly Development"
-    ],
-    accent: "blue"
+    description: "High-converting, responsive websites built for speed, brand authority, and search visibility.",
+    features: ["Corporate Sites", "Landing Pages", "Website Redesign", "SEO Optimization"],
+    accent: "blue",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    )
   },
   {
     id: "web-applications",
     num: "02",
     title: "Custom Web Application Development",
-    description:
-      "Powerful web applications designed to automate business processes, manage operations, and improve productivity.",
-    features: [
-      "Custom Business Applications",
-      "Admin Dashboards",
-      "Management Systems",
-      "Customer Portals",
-      "Workflow Automation",
-      "API Integrations"
-    ],
-    accent: "green"
+    description: "Powerful web portals, admin dashboards, and custom software that automate daily business operations.",
+    features: ["Custom Dashboards", "Management Portals", "Workflow Automation", "API Integrations"],
+    accent: "green",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M3 9h18M9 21V9" />
+      </svg>
+    )
   },
   {
     id: "ecommerce-development",
     num: "03",
     title: "E-commerce Website Development",
-    description:
-      "Create powerful online stores with seamless shopping experiences, secure payment integrations, and efficient order management.",
-    features: [
-      "Custom E-commerce Stores",
-      "Product Management",
-      "Shopping Cart",
-      "Payment Gateway Integration",
-      "Order Management",
-      "Inventory Management"
-    ],
-    accent: "coral"
+    description: "Modern online storefronts with seamless product management, shopping carts, and payment gateways.",
+    features: ["Custom Stores", "Cart & Checkout", "Payment Gateways", "Inventory Sync"],
+    accent: "coral",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18" />
+        <path d="M16 10a4 4 0 01-8 0" />
+      </svg>
+    )
   },
   {
     id: "mobile-development",
     num: "04",
     title: "Mobile Application Development",
-    description:
-      "Build engaging mobile experiences with applications designed for performance, usability, and business growth.",
-    features: [
-      "Android Applications",
-      "iOS Applications",
-      "Cross-Platform Applications",
-      "Customer Applications",
-      "Business Applications",
-      "API Integration"
-    ],
-    accent: "blue"
+    description: "High-performance iOS and Android applications delivering fluid, native mobile experiences.",
+    features: ["iOS & Android", "React Native", "Flutter Apps", "Real-Time Sync"],
+    accent: "blue",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+        <line x1="12" y1="18" x2="12.01" y2="18" />
+      </svg>
+    )
   },
   {
     id: "saas-development",
     num: "05",
     title: "SaaS & Software Development",
-    description:
-      "Transform your business ideas into scalable software products with subscription management, intelligent dashboards, and powerful backend systems.",
-    features: [
-      "SaaS Product Development",
-      "Multi-Tenant Applications",
-      "Subscription Management",
-      "CRM & ERP Systems",
-      "Custom Software",
-      "Third-Party Integrations"
-    ],
-    accent: "green"
+    description: "Scalable cloud software engineered with multi-tenant architectures, subscription billing, and secure APIs.",
+    features: ["SaaS Architecture", "Multi-Tenant", "Subscription Billing", "Cloud Backends"],
+    accent: "green",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z" />
+      </svg>
+    )
   },
   {
     id: "ai-automation",
     num: "06",
     title: "AI Integration & Business Automation",
-    description:
-      "Use artificial intelligence and intelligent automation to streamline repetitive tasks, improve efficiency, and create smarter business experiences.",
-    features: [
-      "AI Chatbots",
-      "AI Voice Automation",
-      "Business Process Automation",
-      "AI API Integration",
-      "Intelligent Data Processing",
-      "Workflow Automation"
-    ],
-    accent: "coral"
+    description: "Intelligent AI chatbots, automated business pipelines, and smart voice systems that save time.",
+    features: ["AI Chatbots", "Voice Automation", "Process Pipelines", "OpenAI APIs"],
+    accent: "coral",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+      </svg>
+    )
   }
 ];
 
@@ -106,26 +93,61 @@ const valueProps = [
   {
     num: "01",
     title: "Business-Focused Solutions",
-    description: "Digital products designed around real business requirements, workflows, and tangible growth outcomes.",
-    badge: "Strategy"
+    description: "Engineered around your real business workflows, customer journeys, and measurable growth outcomes.",
+    badge: "Strategy",
+    metric: "Outcome-Driven",
+    accent: "blue",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+      </svg>
+    )
   },
   {
     num: "02",
     title: "Modern Technology",
-    description: "Reliable and modern development technologies ensuring maintainability, speed, and clean architecture.",
-    badge: "Engineering"
+    description: "Clean code, modern frameworks, and cloud-native architecture ensuring speed and maintainability.",
+    badge: "Engineering",
+    metric: "Modern Stack",
+    accent: "green",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    )
   },
   {
     num: "03",
     title: "Performance & Security",
-    description: "Optimized experiences with security best practices and compliance built directly into the development process.",
-    badge: "Reliability"
+    description: "Sub-second load times, Core Web Vitals optimization, and security best practices built in from day one.",
+    badge: "Reliability",
+    metric: "99+ Performance",
+    accent: "coral",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    )
   },
   {
     num: "04",
     title: "Built to Scale",
-    description: "Flexible, cloud-native architectures that comfortably support your future business expansion.",
-    badge: "Growth"
+    description: "Flexible, cloud-ready infrastructures designed to accommodate growing traffic and seamless feature expansion.",
+    badge: "Growth",
+    metric: "Cloud-Native",
+    accent: "blue",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" />
+        <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
+        <path d="M9 12H4s.55-3.03 2-4.5c1.62-1.62 5-2 5-2" />
+        <path d="M12 15v5s3.03-.55 4.5-2c1.62-1.62 2-5 2-5" />
+      </svg>
+    )
   }
 ];
 
@@ -160,37 +182,37 @@ const processSteps = [
   {
     num: "01",
     phase: "DISCOVER",
-    title: "Understand your business & objectives",
-    description:
-      "We dive deep into your target audience, industry landscape, functional requirements, and growth goals to formulate an actionable roadmap."
+    title: "Research & Scoping",
+    deliverable: "Roadmap & Scope",
+    description: "Understanding your business goals, target audience, and key features."
   },
   {
     num: "02",
     phase: "PLAN & DESIGN",
-    title: "Define architecture & user journeys",
-    description:
-      "We structure the system architecture, craft high-fidelity wireframes, and design clean, accessible interfaces that align with your brand."
+    title: "UI/UX & Architecture",
+    deliverable: "Wireframes & Design",
+    description: "System architecture, database schema, and high-fidelity interfaces."
   },
   {
     num: "03",
     phase: "DEVELOP",
-    title: "Build frontend, backend & integrations",
-    description:
-      "Our engineers write clean, maintainable code for client interfaces, database layers, server APIs, payment gateways, and third-party tools."
+    title: "Full-Stack Engineering",
+    deliverable: "Production Code",
+    description: "Clean frontend components, secure backend APIs, and integrations."
   },
   {
     num: "04",
     phase: "TEST & DEPLOY",
-    title: "Rigorously verify & launch securely",
-    description:
-      "We perform functionality, cross-device responsiveness, Core Web Vitals optimization, and security audits before zero-downtime deployment."
+    title: "QA & Cloud Launch",
+    deliverable: "Zero-Downtime Live",
+    description: "Cross-device testing, performance audits, and secure deployment."
   },
   {
     num: "05",
     phase: "SUPPORT & SCALE",
-    title: "Continuous maintenance & expansion",
-    description:
-      "We provide post-launch monitoring, performance audits, new feature development, and support as your business scales."
+    title: "Continuous Growth",
+    deliverable: "24/7 Monitoring",
+    description: "Ongoing maintenance, speed optimization, and feature iterations."
   }
 ];
 
@@ -277,37 +299,6 @@ const portfolioProjects = [
     metrics: "Lead Attribution · Webhook Engine"
   }
 ];
-
-const techStack = {
-  frontend: {
-    title: "Frontend Development",
-    items: ["HTML5", "CSS3", "JavaScript", "React.js", "Next.js", "Tailwind CSS"]
-  },
-  backend: {
-    title: "Backend Engineering",
-    items: ["Node.js", "PHP", "Laravel", "Express.js"]
-  },
-  database: {
-    title: "Databases & Storage",
-    items: ["MySQL", "PostgreSQL", "MongoDB", "Supabase"]
-  },
-  mobile: {
-    title: "Mobile Technologies",
-    items: ["React Native", "Flutter"]
-  },
-  cloud: {
-    title: "Cloud & Deployment",
-    items: ["AWS", "Vercel", "Hostinger", "Docker", "GitHub"]
-  },
-  integrations: {
-    title: "Payment & Integrations",
-    items: ["Razorpay", "Cashfree", "REST APIs", "Third-Party Integrations"]
-  },
-  ai: {
-    title: "AI & Automation",
-    items: ["OpenAI APIs", "AI Agents", "Workflow Automation", "Voice Automation"]
-  }
-};
 
 const industries = [
   {
@@ -565,11 +556,6 @@ export default function Home() {
           <div className="hero-inner">
             <div className="hero-layout">
               <div className="hero-copy">
-                <div className="hero-eyebrow">
-                  <span className="eyebrow-dot" />
-                  DIGITAL ENGINEERING & DEVELOPMENT STUDIO
-                </div>
-
                 <h1 className="hero-title" aria-label="We Build Digital Products That Move Businesses Forward.">
                   {heroWords.map((word, index) => {
                     const isHighlight =
@@ -594,12 +580,6 @@ export default function Home() {
                   We design and develop modern websites, custom web applications, e-commerce platforms,
                   and mobile applications that solve real business problems and create opportunities for growth.
                 </p>
-
-                <div className="hero-highlights">
-                  <span className="hero-chip">✦ Custom-Built Solutions</span>
-                  <span className="hero-chip">✦ Performance-First Development</span>
-                  <span className="hero-chip">✦ Scalable Technology</span>
-                </div>
 
                 <div className="hero-actions">
                   <a className="cta-btn" href="#contact">
@@ -658,13 +638,22 @@ export default function Home() {
                   </div>
 
                   <div className="console-body">
-                    <div className="occupancy-card">
-                      <div className="ring">
-                        <span>100%</span>
+                    <div className="code-editor-card">
+                      <div className="editor-tab-bar">
+                        <span className="editor-tab">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke="var(--blue)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                          stack.config.ts
+                        </span>
+                        <span className="editor-status-pill">Active</span>
                       </div>
-                      <div>
-                        <b>Tailored Architecture</b>
-                        <p>End-to-end modern stack: Next.js, Node.js, Cloud APIs & secure databases.</p>
+                      <div className="code-content">
+                        <div className="code-line"><span className="line-no">1</span><span><span className="kwd">const</span> <span className="def">project</span> = <span className="fn">createDigitalProduct</span>({'{'}</span></div>
+                        <div className="code-line"><span className="line-no">2</span><span>  <span className="prop">stack</span>: [<span className="str">"Next.js"</span>, <span className="str">"Node.js"</span>, <span className="str">"Cloud"</span>],</span></div>
+                        <div className="code-line"><span className="line-no">3</span><span>  <span className="prop">architecture</span>: <span className="str">"Scalable &amp; Secure"</span>,</span></div>
+                        <div className="code-line"><span className="line-no">4</span><span>  <span className="prop">performance</span>: <span className="str">"Sub-second FCP"</span></span></div>
+                        <div className="code-line"><span className="line-no">5</span><span>{'}'});</span></div>
                       </div>
                     </div>
 
@@ -701,7 +690,6 @@ export default function Home() {
           <div className="section-inner">
             <div className="section-heading reveal">
               <div>
-                <span className="section-eyebrow">CORE VALUE PROPOSITION</span>
                 <h2>Technology Built Around Your Business.</h2>
               </div>
               <p>
@@ -712,13 +700,28 @@ export default function Home() {
 
             <div className="value-grid">
               {valueProps.map((item, index) => (
-                <article className="feature-card reveal" key={item.title}>
-                  <div className="feature-header-row">
-                    <div className="feature-icon">{item.num}</div>
-                    <span className="card-badge">{item.badge}</span>
+                <article
+                  className={`value-pillar-card reveal value-item-${index + 1}`}
+                  key={item.title}
+                  style={{ animationDelay: `${0.1 + index * 0.12}s` }}
+                >
+                  <div className="value-card-shimmer" aria-hidden="true" />
+                  <div className="value-card-head">
+                    <div className="value-icon-box">
+                      <div className={`value-icon accent-${item.accent}`} aria-hidden="true">
+                        {item.icon}
+                      </div>
+                      <span className="value-badge">{item.badge}</span>
+                    </div>
+                    <span className="value-index-num">{item.num}</span>
                   </div>
-                  <h3>{item.title}</h3>
-                  <p className="card-description">{item.description}</p>
+
+                  <h3 className="value-card-title">{item.title}</h3>
+                  <p className="value-card-desc">{item.description}</p>
+
+                  <div className="value-card-footer">
+                    <span className="value-metric-tag">✦ {item.metric}</span>
+                  </div>
                 </article>
               ))}
             </div>
@@ -730,7 +733,6 @@ export default function Home() {
           <div className="section-inner">
             <div className="section-heading reveal">
               <div>
-                <span className="section-eyebrow">OUR SERVICES</span>
                 <h2>Everything You Need to Build Your Digital Future.</h2>
               </div>
               <p>
@@ -743,7 +745,12 @@ export default function Home() {
               {services.map((service) => (
                 <article className="feature-card service-card reveal" key={service.id}>
                   <div className="feature-header-row">
-                    <div className={`feature-icon accent-${service.accent}`}>{service.num}</div>
+                    <div className="service-icon-wrap">
+                      <div className={`feature-icon accent-${service.accent}`} aria-hidden="true">
+                        {service.icon}
+                      </div>
+                      <span className="service-number">{service.num}</span>
+                    </div>
                     <button
                       type="button"
                       className="service-select-btn"
@@ -805,26 +812,35 @@ export default function Home() {
           <div className="section-inner">
             <div className="section-heading reveal">
               <div>
-                <span className="section-eyebrow">HOW WE WORK</span>
                 <h2>From Idea to Launch. We Make It Happen.</h2>
               </div>
               <p>
-                A transparent and structured development process that takes your idea from initial planning
-                to successful deployment and beyond.
+                A transparent and structured development pipeline that turns your business concept into a scalable digital product.
               </p>
             </div>
 
-            <div className="workflow-grid">
-              {processSteps.map((step) => (
-                <div className="step reveal" key={step.num}>
-                  <div className="step-num">{step.num}</div>
-                  <div>
-                    <span className="step-phase">{step.phase}</span>
-                    <h3>{step.title}</h3>
-                    <p>{step.description}</p>
+            {/* Animative Step-by-Step Flow */}
+            <div className="process-flow-track reveal">
+              <div className="flow-progress-beam" aria-hidden="true" />
+              <div className="process-flow-grid">
+                {processSteps.map((step, index) => (
+                  <div
+                    className={`process-step-card reveal step-item-${index + 1}`}
+                    key={step.num}
+                  >
+                    <div className="step-card-top">
+                      <span className="step-node-number">{step.num}</span>
+                      {index < processSteps.length - 1 && (
+                        <span className="step-flow-arrow" aria-hidden="true">→</span>
+                      )}
+                    </div>
+                    <span className="step-phase-badge">{step.phase}</span>
+                    <h3 className="step-card-title">{step.title}</h3>
+                    <p className="step-card-desc">{step.description}</p>
+                    <span className="step-deliverable-chip">✓ {step.deliverable}</span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -913,38 +929,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION 7: TECHNOLOGY STACK */}
-        <section className="tech-band" id="tech-stack">
-          <div className="section-inner">
-            <div className="section-heading reveal">
-              <div>
-                <span className="section-eyebrow">TECH STACK</span>
-                <h2>Powered by Modern Technologies.</h2>
-              </div>
-              <p>
-                We use proven technologies and development tools to create reliable, efficient, and
-                scalable digital products.
-              </p>
-            </div>
-
-            <div className="tech-grid">
-              {Object.entries(techStack).map(([key, category]) => (
-                <div className="tech-card reveal" key={key}>
-                  <h3>{category.title}</h3>
-                  <div className="tech-chips">
-                    {category.items.map((tech) => (
-                      <span className="tech-badge" key={tech}>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 8: INDUSTRIES WE SERVE */}
+        {/* SECTION: INDUSTRIES WE SERVE */}
         <section className="industries-band" id="industries">
           <div className="section-inner">
             <div className="section-heading reveal">
@@ -1018,30 +1003,13 @@ export default function Home() {
           <div className="section-inner">
             <div className="contact-layout">
               <div className="contact-copy reveal">
-                <span className="section-eyebrow dark">START A PROJECT</span>
                 <h2>Have an Idea? Let's Build Something Powerful.</h2>
                 <p>
                   Whether you need a business website, a custom web application, an e-commerce platform,
                   or a complete software solution, we're ready to help bring your vision to life.
                 </p>
 
-                <div className="contact-highlights-list">
-                  <div className="contact-point-item">
-                    <b>✦ Transparent Scoping</b>
-                    <span>No hidden fees, clear milestones & realistic delivery timelines.</span>
-                  </div>
-                  <div className="contact-point-item">
-                    <b>✦ Complete Engineering</b>
-                    <span>From UI/UX design to backend development, databases & deployments.</span>
-                  </div>
-                  <div className="contact-point-item">
-                    <b>✦ Post-Launch Support</b>
-                    <span>Dedicated maintenance, security updates & performance scaling.</span>
-                  </div>
-                </div>
-
                 <div className="direct-channels">
-                  <p className="direct-title">Direct Inquiries:</p>
                   <a className="direct-link" href="mailto:hariharansankar4@gmail.com">
                     ✉ hariharansankar4@gmail.com
                   </a>
@@ -1058,8 +1026,7 @@ export default function Home() {
 
               {/* Enquiry Form */}
               <form className="form-card reveal" onSubmit={handleSubmit} id="enquiry">
-                <h3 className="form-title">Request a Project Consultation</h3>
-                <p className="form-subtitle">Fill in the details below and we will respond with a tailored proposal.</p>
+                <h3 className="form-title">Start a Project</h3>
 
                 {/* Honeypot field */}
                 <div className="hidden-field">
@@ -1076,7 +1043,6 @@ export default function Home() {
                       name="name"
                       autoComplete="name"
                       required
-                      placeholder="e.g. Rahul Sharma"
                     />
                   </label>
 
@@ -1086,7 +1052,6 @@ export default function Home() {
                       type="text"
                       name="businessName"
                       autoComplete="organization"
-                      placeholder="e.g. Acme Tech Solutions"
                     />
                   </label>
 
@@ -1097,7 +1062,6 @@ export default function Home() {
                       name="email"
                       autoComplete="email"
                       required
-                      placeholder="name@business.com"
                     />
                   </label>
 
@@ -1108,7 +1072,6 @@ export default function Home() {
                       name="phone"
                       autoComplete="tel"
                       required
-                      placeholder="+91 98765 43210"
                     />
                   </label>
 
@@ -1149,7 +1112,6 @@ export default function Home() {
                       name="message"
                       required
                       rows={4}
-                      placeholder="Tell us about your project goals, desired features, timeline, or current challenges..."
                     />
                   </label>
                 </div>

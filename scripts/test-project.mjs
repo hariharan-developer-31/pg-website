@@ -89,22 +89,24 @@ async function runSourceTests() {
 
   // 3. HOMEPAGE 11 SECTIONS VERIFICATION
   // Section 1: Hero
-  assert.match(page, /DIGITAL ENGINEERING & DEVELOPMENT STUDIO/, "hero eyebrow must be present");
   assert.match(page, /We Build Digital Products That Move Businesses Forward\./, "hero heading must match master prompt");
-  assert.match(page, /Custom-Built Solutions/, "hero highlights must include Custom-Built Solutions");
-  assert.match(page, /Performance-First Development/, "hero highlights must include Performance-First Development");
-  assert.match(page, /Scalable Technology/, "hero highlights must include Scalable Technology");
+  assert.doesNotMatch(page, /hero-eyebrow|DIGITAL ENGINEERING & DEVELOPMENT STUDIO/, "hero eyebrow must be removed as requested");
+  assert.doesNotMatch(page, /hero-highlights|Custom-Built Solutions/, "hero highlights must be removed as requested");
+  assert.match(page, /code-editor-card/, "hero console must include the code editor preview");
+  assert.match(page, /stack\.config\.ts/, "hero console code editor must display project configuration");
   assert.match(page, /Start Your Project/, "hero primary CTA must be Start Your Project");
   assert.match(page, /Explore Our Work/, "hero secondary CTA must be Explore Our Work");
 
-  // Section 2: Trust / Value Proposition
+  // Section 2: Trust / Value Proposition (Animated pillar flow)
   assert.match(page, /Technology Built Around Your Business\./, "section 2 heading must match");
+  assert.match(page, /value-pillar-card/, "value cards must use the animated pillar cards");
   assert.match(page, /Business-Focused Solutions/, "section 2 must include Business-Focused Solutions");
   assert.match(page, /Performance & Security/, "section 2 must include Performance & Security");
   assert.match(page, /Built to Scale/, "section 2 must include Built to Scale");
 
-  // Section 3: Our Services (6 services)
+  // Section 3: Our Services (6 services with minimal content & icons)
   assert.match(page, /Everything You Need to Build Your Digital Future\./, "section 3 heading must match");
+  assert.match(page, /service-icon-wrap/, "service cards must include dedicated icon wrappers");
   assert.match(page, /Business Website Development/, "service 1 must be Business Website Development");
   assert.match(page, /Custom Web Application Development/, "service 2 must be Custom Web Application Development");
   assert.match(page, /E-commerce Website Development/, "service 3 must be E-commerce Website Development");
@@ -121,8 +123,9 @@ async function runSourceTests() {
   assert.match(page, /Scalable Solutions/, "advantage 5 must be Scalable Solutions");
   assert.match(page, /Ongoing Support/, "advantage 6 must be Ongoing Support");
 
-  // Section 5: Development Process
+  // Section 5: Development Process (Animative step-by-step flow)
   assert.match(page, /From Idea to Launch\. We Make It Happen\./, "section 5 heading must match");
+  assert.match(page, /process-flow-track/, "step-by-step flow track must be present");
   assert.match(page, /DISCOVER/, "process step 1 must be DISCOVER");
   assert.match(page, /PLAN & DESIGN/, "process step 2 must be PLAN & DESIGN");
   assert.match(page, /DEVELOP/, "process step 3 must be DEVELOP");
@@ -139,15 +142,9 @@ async function runSourceTests() {
   assert.match(page, /SaaS Business Dashboard/, "project 5 must be SaaS Business Dashboard");
   assert.match(page, /Campaign Management Web Application/, "project 6 must be Campaign Management Web Application");
 
-  // Section 7: Technology Stack
-  assert.match(page, /Powered by Modern Technologies\./, "section 7 heading must match");
-  assert.match(page, /HTML5/, "tech stack must list HTML5");
-  assert.match(page, /Next\.js/, "tech stack must list Next.js");
-  assert.match(page, /Node\.js/, "tech stack must list Node.js");
-  assert.match(page, /PostgreSQL/, "tech stack must list PostgreSQL");
-  assert.match(page, /React Native/, "tech stack must list React Native");
-  assert.match(page, /Razorpay/, "tech stack must list Razorpay");
-  assert.match(page, /OpenAI APIs/, "tech stack must list OpenAI APIs");
+  // Tech stack section removed as requested
+  assert.doesNotMatch(page, /Powered by Modern Technologies\./, "tech stack section must be removed as requested");
+  assert.doesNotMatch(page, /id="tech-stack"/, "tech-stack id must be removed");
 
   // Section 8: Industries We Serve
   assert.match(page, /Digital Solutions for Every Industry\./, "section 8 heading must match");
@@ -174,6 +171,7 @@ async function runSourceTests() {
   assert.match(page, /name="businessName"/, "form must include businessName field");
   assert.match(page, /name="service"/, "form must include service select field");
   assert.match(page, /name="budget"/, "form must include budget select field");
+  assert.doesNotMatch(page, /placeholder=/, "form inputs must not have placeholders for minimal design");
   assert.match(page, /Let's Discuss Your Project/, "submit button text must match master prompt");
   assert.match(page, /Chat on WhatsApp/, "WhatsApp action must be present");
 
