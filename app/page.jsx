@@ -584,37 +584,14 @@ export default function Home() {
     <>
       {/* Brand Opening Curtain Animation */}
       <div className="splash" aria-hidden="true">
-        <div className="splash-center-badge">
-          <div className="splash-logo-circle">
-            <img
-              className="splash-logo-image"
-              src={logo.src}
-              alt="StackWebApp"
-              width="64"
-              height="64"
-            />
-          </div>
-          <span className="splash-brand-name">STACKWEBAPP</span>
-          <span className="splash-brand-tag">DIGITAL PRODUCT STUDIO</span>
-        </div>
         <div className="splash-row splash-row-top">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div className="splash-box" key={`top-1-${i}`} style={{ "--col": i }} />
-          ))}
-        </div>
-        <div className="splash-row splash-row-top splash-row-offset">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div className="splash-box" key={`top-2-${i}`} style={{ "--col": i }} />
-          ))}
-        </div>
-        <div className="splash-row splash-row-bottom splash-row-offset">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div className="splash-box" key={`bot-1-${i}`} style={{ "--col": i }} />
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div className="splash-box" key={`top-${i}`} />
           ))}
         </div>
         <div className="splash-row splash-row-bottom">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div className="splash-box" key={`bot-2-${i}`} style={{ "--col": i }} />
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div className="splash-box" key={`bottom-${i}`} />
           ))}
         </div>
       </div>

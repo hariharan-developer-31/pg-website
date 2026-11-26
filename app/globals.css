@@ -49,7 +49,7 @@ button, input, textarea, select {
 }
 
 /* =========================================================================
-   1. BRAND OPENING BRICKS SPLASH
+   1. BRAND OPENING SPLASH
    ========================================================================= */
 .splash {
   position: fixed;
@@ -57,102 +57,55 @@ button, input, textarea, select {
   z-index: 9999;
   pointer-events: none;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  animation: splashHide 0.35s ease forwards;
-  animation-delay: 1.65s;
-}
-
-.splash-center-badge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  pointer-events: none;
-  animation: splashEmblemFade 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 0.45s;
-}
-
-.splash-logo-circle {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--ink);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 14px 40px rgba(17, 17, 17, 0.28), 0 0 0 4px rgba(244, 241, 232, 0.6);
-}
-
-.splash-logo-image {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-}
-
-.splash-brand-name {
-  color: var(--ink);
-  font-weight: 900;
-  font-size: 18px;
-  letter-spacing: 3px;
-}
-
-.splash-brand-tag {
-  color: rgba(17, 17, 17, 0.75);
-  font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 2px;
+  animation: splashHide 0.3s ease forwards;
+  animation-delay: 1.25s;
 }
 
 .splash-row {
   display: flex;
   width: 100%;
-  height: 25%;
+  height: 50%;
 }
 
 .splash-box {
-  flex: 1;
+  width: 20%;
   height: 100%;
   background: var(--blue);
-  border: 1px solid rgba(244, 241, 232, 0.45);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset -1px -1px 0 rgba(17, 17, 17, 0.08);
-  position: relative;
-}
-
-.splash-row-offset .splash-box:nth-child(even) {
-  background: #6bbcd6;
 }
 
 .splash-row-top .splash-box {
-  animation: splashTop 0.85s cubic-bezier(0.96, -0.02, 0.38, 1.01) forwards;
-  animation-delay: calc(0.45s + var(--col, 0) * 0.07s);
+  animation: splashTop 0.9s cubic-bezier(0.96, -0.02, 0.38, 1.01) forwards;
 }
 
 .splash-row-bottom .splash-box {
-  animation: splashBottom 0.85s cubic-bezier(0.96, -0.02, 0.38, 1.01) forwards;
-  animation-delay: calc(0.45s + var(--col, 0) * 0.07s);
+  animation: splashBottom 0.9s cubic-bezier(0.96, -0.02, 0.38, 1.01) forwards;
+}
+
+.splash-box:nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.splash-box:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.splash-box:nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+.splash-box:nth-child(5) {
+  animation-delay: 0.2s;
 }
 
 @keyframes splashTop {
   to {
-    transform: translateY(-101%);
+    transform: translateY(-100%);
   }
 }
 
 @keyframes splashBottom {
   to {
-    transform: translateY(101%);
-  }
-}
-
-@keyframes splashEmblemFade {
-  to {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translateY(100%);
   }
 }
 
@@ -160,7 +113,6 @@ button, input, textarea, select {
   to {
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
   }
 }
 
@@ -2538,8 +2490,7 @@ input:focus, textarea:focus, select:focus {
   }
 
   .splash {
-    animation-duration: 0.2s !important;
-    animation-delay: 0.4s !important;
+    display: none;
   }
 
   .reveal, .word {
