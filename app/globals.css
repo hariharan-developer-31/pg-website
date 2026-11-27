@@ -637,7 +637,7 @@ section {
   border-color: rgba(17, 17, 17, 0.22);
 }
 
-/* Hero Visual: Animated Business Growth Visualizer (Separated Parts) */
+/* Hero Visual: Animated Business Growth Visualizer (Single Layer, 0px Radius) */
 .hero-console {
   position: relative;
   justify-self: end;
@@ -652,10 +652,12 @@ section {
   gap: 14px;
 }
 
-.graph-main-tablet {
+/* Chart Container: Single Direct Layer, border-radius 0px */
+.growth-chart-container {
+  --scroll-draw: 0.35;
   position: relative;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: 0px !important;
   background: rgba(17, 17, 17, 0.95);
   border: 1px solid rgba(244, 241, 232, 0.16);
   color: var(--paper);
@@ -664,24 +666,20 @@ section {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   animation: consoleFloat 6s ease-in-out infinite;
-}
-
-.graph-main-tablet::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, transparent, rgba(117, 197, 222, 0.14), transparent);
-  transform: translateX(-110%);
-  animation: consoleSweep 6s ease-in-out infinite;
-}
-
-/* Chart Container */
-.growth-chart-container {
-  --scroll-draw: 0.35;
-  position: relative;
   z-index: 2;
   width: 100%;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.growth-chart-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0px !important;
+  background: linear-gradient(115deg, transparent, rgba(117, 197, 222, 0.14), transparent);
+  transform: translateX(-110%);
+  animation: consoleSweep 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .growth-chart-container.chart-running {
@@ -854,7 +852,7 @@ section {
   font-weight: 600;
 }
 
-/* PART 2 & 3: Below Graph Tablet Comparison Row */
+/* PART 2 & 3: Below Graph Tablet Comparison Row (border-radius: 0px) */
 .tablet-comparison-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -866,7 +864,7 @@ section {
 .comparison-tablet {
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 0px !important;
   padding: 14px 16px 13px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(16px);
@@ -876,6 +874,7 @@ section {
 }
 
 .tablet-before {
+  border-radius: 0px !important;
   background: linear-gradient(155deg, rgba(28, 16, 18, 0.94), rgba(16, 10, 12, 0.96));
   border: 1px solid rgba(248, 113, 113, 0.26);
   transform: translateY(calc(var(--scroll-shift, 0) * -8px)) rotateY(2deg);
@@ -883,6 +882,7 @@ section {
 }
 
 .tablet-after {
+  border-radius: 0px !important;
   background: linear-gradient(155deg, rgba(14, 26, 22, 0.94), rgba(10, 18, 16, 0.96));
   border: 1px solid rgba(140, 200, 168, 0.32);
   transform: translateY(calc(var(--scroll-shift, 0) * -12px)) rotateY(-2deg);
@@ -909,6 +909,41 @@ section {
   transform: translateY(-5px) rotateY(0) scale(1.02);
   border-color: rgba(140, 200, 168, 0.55);
   box-shadow: 0 22px 60px rgba(117, 197, 222, 0.22);
+}
+
+/* Automatic Graph Animation on Laptop & Above (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .growth-curve-path {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: drawCurveAuto 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  }
+
+  .growth-running-beam {
+    opacity: 0.95 !important;
+    animation: graphRunningStream 0.85s linear infinite !important;
+    animation-delay: 1.6s !important;
+  }
+
+  .growth-fill-path {
+    opacity: 0;
+    animation: fadeInAreaAuto 1.4s ease forwards !important;
+    animation-delay: 1.2s !important;
+  }
+
+  .growth-peak-node {
+    animation: peakRunning 0.85s ease-in-out infinite alternate !important;
+  }
+}
+
+@keyframes drawCurveAuto {
+  0% { stroke-dashoffset: 600; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeInAreaAuto {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .tablet-header {
@@ -945,7 +980,7 @@ section {
   letter-spacing: 0.6px;
   text-transform: uppercase;
   padding: 2px 7px;
-  border-radius: 4px;
+  border-radius: 0px;
 }
 
 .before-badge .tablet-badge-pill {
@@ -2705,7 +2740,12 @@ input:focus, textarea:focus, select:focus {
     gap: 10px;
   }
 
+  .growth-chart-container {
+    border-radius: 0px !important;
+  }
+
   .comparison-tablet {
+    border-radius: 0px !important;
     padding: 10px 12px;
     transform: none !important;
     animation: none;

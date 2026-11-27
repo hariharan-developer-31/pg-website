@@ -512,7 +512,9 @@ export default function Home() {
           // Interactive running graph animation & tablet scroll motion
           const chartEl = document.querySelector(".growth-chart-container");
           const visualizerEl = document.querySelector(".growth-visualizer");
-          if (chartEl) {
+          const isMobileOrTablet = typeof window !== "undefined" && window.innerWidth < 1024;
+
+          if (chartEl && isMobileOrTablet) {
             chartEl.classList.add("chart-running");
             const progress = Math.min(1, Math.max(0, currentScrollY / 260));
             chartEl.style.setProperty("--scroll-draw", (0.35 + progress * 0.65).toFixed(3));
@@ -777,107 +779,105 @@ export default function Home() {
                 className="hero-console growth-visualizer reveal"
                 aria-label="StackWebApp business growth and sales impact visualizer"
               >
-                {/* PART 1: Bigger Graph Showcase Device */}
-                <div className="growth-shell graph-main-tablet">
-                  <div className="growth-chart-container">
-                    <div className="chart-legend">
-                      <div className="legend-item legend-before">
-                        <span className="legend-line line-before" />
-                        <span>Before Website (Flat Sales)</span>
-                      </div>
-                      <div className="legend-item legend-after">
-                        <span className="legend-line line-after" />
-                        <span>After StackWebApp Launch</span>
-                      </div>
+                {/* PART 1: Bigger Graph Showcase Device (Direct Single Layer) */}
+                <div className="growth-shell growth-chart-container">
+                  <div className="chart-legend">
+                    <div className="legend-item legend-before">
+                      <span className="legend-line line-before" />
+                      <span>Before Website (Flat Sales)</span>
                     </div>
-
-                    <div className="chart-svg-wrap">
-                      <svg viewBox="0 0 560 215" className="growth-svg" fill="none" preserveAspectRatio="none">
-                        <defs>
-                          <linearGradient id="growthAreaGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="#75C5DE" stopOpacity="0.45" />
-                            <stop offset="60%" stopColor="#8CC8A8" stopOpacity="0.15" />
-                            <stop offset="100%" stopColor="#8CC8A8" stopOpacity="0.0" />
-                          </linearGradient>
-                          <linearGradient id="growthLineGrad" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stopColor="#94a3b8" />
-                            <stop offset="35%" stopColor="#75C5DE" />
-                            <stop offset="70%" stopColor="#8CC8A8" />
-                            <stop offset="100%" stopColor="#F08C76" />
-                          </linearGradient>
-                          <filter id="glowGlow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="4" result="blur" />
-                            <feMerge>
-                              <feMergeNode in="blur" />
-                              <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                          </filter>
-                        </defs>
-
-                        {/* Subtle Grid Lines */}
-                        <line x1="20" y1="40" x2="540" y2="40" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                        <line x1="20" y1="90" x2="540" y2="90" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                        <line x1="20" y1="140" x2="540" y2="140" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                        <line x1="20" y1="188" x2="540" y2="188" stroke="rgba(244, 241, 232, 0.14)" />
-
-                        {/* Growth Gradient Area */}
-                        <path
-                          d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18 L 540 188 L 20 188 Z"
-                          fill="url(#growthAreaGrad)"
-                          className="growth-fill-path"
-                        />
-
-                        {/* Before Website Flat Baseline (Dashed Red/Muted) */}
-                        <path
-                          d="M 20 184 L 180 180 L 540 176"
-                          stroke="rgba(248, 113, 113, 0.6)"
-                          strokeWidth="2.5"
-                          strokeDasharray="5 5"
-                        />
-
-                        {/* Launch Event Dividing Line & Marker */}
-                        <line x1="180" y1="25" x2="180" y2="188" stroke="rgba(117, 197, 222, 0.35)" strokeDasharray="2 3" />
-                        <circle cx="180" cy="180" r="6" fill="#75C5DE" className="launch-pulse-node" />
-
-                        {/* After Website / Web App Surge Curve */}
-                        <path
-                          d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18"
-                          stroke="url(#growthLineGrad)"
-                          strokeWidth="3.5"
-                          strokeLinecap="round"
-                          filter="url(#glowGlow)"
-                          className="growth-curve-path"
-                        />
-
-                        {/* Running Telemetry Stream (Active on Scroll) */}
-                        <path
-                          d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18"
-                          stroke="#ffffff"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          className="growth-running-beam"
-                        />
-
-                        {/* Active Growth Nodes */}
-                        <circle cx="340" cy="92" r="5" fill="#8CC8A8" className="growth-node" />
-                        <circle cx="540" cy="18" r="7" fill="#F08C76" className="growth-peak-node" />
-                      </svg>
-
-                      {/* Callout Badges inside chart */}
-                      <div className="launch-flag-tag">
-                        <span>⚡ Launch Point</span>
-                      </div>
-                      <div className="growth-peak-tag">
-                        <span>🚀 +340% Revenue Growth</span>
-                      </div>
+                    <div className="legend-item legend-after">
+                      <span className="legend-line line-after" />
+                      <span>After StackWebApp Launch</span>
                     </div>
+                  </div>
 
-                    <div className="chart-timeline-labels">
-                      <span>Q1: Traditional / No Site</span>
-                      <span>Q2: Platform Launch</span>
-                      <span>Q3: Automated Lead Flow</span>
-                      <span>Q4: Market Leadership</span>
+                  <div className="chart-svg-wrap">
+                    <svg viewBox="0 0 560 215" className="growth-svg" fill="none" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="growthAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#75C5DE" stopOpacity="0.45" />
+                          <stop offset="60%" stopColor="#8CC8A8" stopOpacity="0.15" />
+                          <stop offset="100%" stopColor="#8CC8A8" stopOpacity="0.0" />
+                        </linearGradient>
+                        <linearGradient id="growthLineGrad" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0%" stopColor="#94a3b8" />
+                          <stop offset="35%" stopColor="#75C5DE" />
+                          <stop offset="70%" stopColor="#8CC8A8" />
+                          <stop offset="100%" stopColor="#F08C76" />
+                        </linearGradient>
+                        <filter id="glowGlow" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="4" result="blur" />
+                          <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                          </feMerge>
+                        </filter>
+                      </defs>
+
+                      {/* Subtle Grid Lines */}
+                      <line x1="20" y1="40" x2="540" y2="40" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                      <line x1="20" y1="90" x2="540" y2="90" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                      <line x1="20" y1="140" x2="540" y2="140" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                      <line x1="20" y1="188" x2="540" y2="188" stroke="rgba(244, 241, 232, 0.14)" />
+
+                      {/* Growth Gradient Area */}
+                      <path
+                        d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18 L 540 188 L 20 188 Z"
+                        fill="url(#growthAreaGrad)"
+                        className="growth-fill-path"
+                      />
+
+                      {/* Before Website Flat Baseline (Dashed Red/Muted) */}
+                      <path
+                        d="M 20 184 L 180 180 L 540 176"
+                        stroke="rgba(248, 113, 113, 0.6)"
+                        strokeWidth="2.5"
+                        strokeDasharray="5 5"
+                      />
+
+                      {/* Launch Event Dividing Line & Marker */}
+                      <line x1="180" y1="25" x2="180" y2="188" stroke="rgba(117, 197, 222, 0.35)" strokeDasharray="2 3" />
+                      <circle cx="180" cy="180" r="6" fill="#75C5DE" className="launch-pulse-node" />
+
+                      {/* After Website / Web App Surge Curve */}
+                      <path
+                        d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18"
+                        stroke="url(#growthLineGrad)"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        filter="url(#glowGlow)"
+                        className="growth-curve-path"
+                      />
+
+                      {/* Running Telemetry Stream (Active on Scroll or Auto on Desktop) */}
+                      <path
+                        d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18"
+                        stroke="#ffffff"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        className="growth-running-beam"
+                      />
+
+                      {/* Active Growth Nodes */}
+                      <circle cx="340" cy="92" r="5" fill="#8CC8A8" className="growth-node" />
+                      <circle cx="540" cy="18" r="7" fill="#F08C76" className="growth-peak-node" />
+                    </svg>
+
+                    {/* Callout Badges inside chart */}
+                    <div className="launch-flag-tag">
+                      <span>⚡ Launch Point</span>
                     </div>
+                    <div className="growth-peak-tag">
+                      <span>🚀 +340% Revenue Growth</span>
+                    </div>
+                  </div>
+
+                  <div className="chart-timeline-labels">
+                    <span>Q1: Traditional / No Site</span>
+                    <span>Q2: Platform Launch</span>
+                    <span>Q3: Automated Lead Flow</span>
+                    <span>Q4: Market Leadership</span>
                   </div>
                 </div>
 
