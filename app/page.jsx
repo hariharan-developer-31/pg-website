@@ -708,23 +708,24 @@ export default function Home() {
             <div className="hero-layout">
               <div className="hero-copy">
                 <h1 className="hero-title" aria-label="We Build Digital Products That Move Businesses Forward.">
-                  {heroWords.map((word, index) => {
-                    const isHighlight =
-                      word === "Digital" || word === "Products" || word === "Move" || word === "Forward.";
-                    return (
-                      <Fragment key={`${word}-${index}`}>
-                        <span
-                          className={`word ${isHighlight ? "hero-highlight" : ""}`}
-                          style={{ animationDelay: `${0.9 + index * 0.04}s` }}
-                        >
-                          {word}
-                        </span>
-                        {word === "Products" && (
-                          <br className="mobile-title-break" />
-                        )}
-                      </Fragment>
-                    );
-                  })}
+                  <span className="hero-title-line">
+                    <span className="word" style={{ animationDelay: "0.90s" }}>We</span>
+                    <span className="word" style={{ animationDelay: "0.94s" }}>Build</span>
+                  </span>
+                  <span className="hero-title-line">
+                    <span className="word hero-highlight" style={{ animationDelay: "0.98s" }}>Digital</span>
+                    <span className="word hero-highlight" style={{ animationDelay: "1.02s" }}>Products</span>
+                  </span>
+                  <span className="hero-title-line">
+                    <span className="word" style={{ animationDelay: "1.06s" }}>That</span>
+                    <span className="word hero-highlight" style={{ animationDelay: "1.10s" }}>Move</span>
+                  </span>
+                  <span className="hero-title-line">
+                    <span className="word" style={{ animationDelay: "1.14s" }}>Businesses</span>
+                  </span>
+                  <span className="hero-title-line">
+                    <span className="word hero-highlight" style={{ animationDelay: "1.18s" }}>Forward.</span>
+                  </span>
                 </h1>
 
                 <p className="hero-lead">
@@ -754,80 +755,192 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Realistic Studio Dashboard / Code Workspace Visual */}
-              <div className="hero-console reveal" aria-label="StackWebApp digital product engineering console">
-                <div className="console-shell">
-                  <div className="console-nav">
-                    <div className="console-nav-left">
-                      <span className="console-window-dots">
-                        <i className="dot-red" />
-                        <i className="dot-yellow" />
-                        <i className="dot-green" />
-                      </span>
-                      <strong>StackWebApp Engine</strong>
+              {/* Animated Business Growth Visualizer: Before vs After */}
+              <div
+                className="hero-console growth-visualizer reveal"
+                aria-label="StackWebApp business growth and sales impact visualizer"
+              >
+                <div className="growth-shell">
+                  {/* Visualizer Top Bar */}
+                  <div className="growth-top-bar">
+                    <div className="growth-badge">
+                      <span className="growth-pulse-dot" />
+                      <span>Verified Business Impact</span>
                     </div>
-                    <b>Production Ready</b>
-                  </div>
-
-                  <div className="console-kpis">
-                    <div>
-                      <span>Core Web Vitals</span>
-                      <strong>99+</strong>
-                    </div>
-                    <div>
-                      <span>Uptime Target</span>
-                      <strong>99.9%</strong>
-                    </div>
-                    <div>
-                      <span>API Latency</span>
-                      <strong>&lt;45ms</strong>
-                    </div>
-                    <div>
-                      <span>Security Grade</span>
-                      <strong>A+</strong>
+                    <div className="growth-stat-pill">
+                      <span className="growth-stat-icon">📈</span>
+                      <strong>+340% Revenue Growth</strong>
                     </div>
                   </div>
 
-                  <div className="console-body">
-                    <div className="code-editor-card">
-                      <div className="editor-tab-bar">
-                        <span className="editor-tab">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke="var(--blue)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                          stack.config.ts
-                        </span>
-                        <span className="editor-status-pill">Active</span>
+                  {/* Dynamic Graphic Chart: Before vs After Trajectory */}
+                  <div className="growth-chart-container">
+                    <div className="chart-legend">
+                      <div className="legend-item legend-before">
+                        <span className="legend-line line-before" />
+                        <span>Before Website (Flat Sales)</span>
                       </div>
-                      <div className="code-content">
-                        <div className="code-line"><span className="line-no">1</span><span><span className="kwd">const</span> <span className="def">project</span> = <span className="fn">createDigitalProduct</span>({'{'}</span></div>
-                        <div className="code-line"><span className="line-no">2</span><span>  <span className="prop">stack</span>: [<span className="str">"Next.js"</span>, <span className="str">"Node.js"</span>, <span className="str">"Cloud"</span>],</span></div>
-                        <div className="code-line"><span className="line-no">3</span><span>  <span className="prop">architecture</span>: <span className="str">"Scalable &amp; Secure"</span>,</span></div>
-                        <div className="code-line"><span className="line-no">4</span><span>  <span className="prop">performance</span>: <span className="str">"Sub-second FCP"</span></span></div>
-                        <div className="code-line"><span className="line-no">5</span><span>{'}'});</span></div>
+                      <div className="legend-item legend-after">
+                        <span className="legend-line line-after" />
+                        <span>After StackWebApp Launch</span>
                       </div>
                     </div>
 
-                    <div className="rent-card">
-                      <span>Performance Metrics</span>
-                      <strong>Optimized</strong>
-                      <div className="rent-bars">
-                        <i title="Frontend Optimization" />
-                        <i title="API Response" />
-                        <i title="Caching Layer" />
-                        <i title="Database Query Speed" />
+                    <div className="chart-svg-wrap">
+                      <svg viewBox="0 0 540 210" className="growth-svg" fill="none" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="growthAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#75C5DE" stopOpacity="0.4" />
+                            <stop offset="60%" stopColor="#8CC8A8" stopOpacity="0.15" />
+                            <stop offset="100%" stopColor="#8CC8A8" stopOpacity="0.0" />
+                          </linearGradient>
+                          <linearGradient id="growthLineGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stopColor="#94a3b8" />
+                            <stop offset="35%" stopColor="#75C5DE" />
+                            <stop offset="70%" stopColor="#8CC8A8" />
+                            <stop offset="100%" stopColor="#F08C76" />
+                          </linearGradient>
+                          <filter id="glowGlow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
+                            <feMerge>
+                              <feMergeNode in="blur" />
+                              <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                          </filter>
+                        </defs>
+
+                        {/* Subtle Grid Lines */}
+                        <line x1="20" y1="40" x2="520" y2="40" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                        <line x1="20" y1="90" x2="520" y2="90" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                        <line x1="20" y1="140" x2="520" y2="140" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                        <line x1="20" y1="185" x2="520" y2="185" stroke="rgba(244, 241, 232, 0.14)" />
+
+                        {/* Growth Gradient Area */}
+                        <path
+                          d="M 20 180 L 180 175 C 230 175, 270 140, 340 90 C 410 40, 470 24, 520 18 L 520 185 L 20 185 Z"
+                          fill="url(#growthAreaGrad)"
+                          className="growth-fill-path"
+                        />
+
+                        {/* Before Website Flat Baseline (Dashed Red/Muted) */}
+                        <path
+                          d="M 20 180 L 180 175 L 520 170"
+                          stroke="rgba(248, 113, 113, 0.55)"
+                          strokeWidth="2.5"
+                          strokeDasharray="5 5"
+                        />
+
+                        {/* Launch Event Dividing Line & Marker */}
+                        <line x1="180" y1="25" x2="180" y2="185" stroke="rgba(117, 197, 222, 0.35)" strokeDasharray="2 3" />
+                        <circle cx="180" cy="175" r="6" fill="#75C5DE" className="launch-pulse-node" />
+
+                        {/* After Website / Web App Surge Curve */}
+                        <path
+                          d="M 20 180 L 180 175 C 230 175, 270 140, 340 90 C 410 40, 470 24, 520 18"
+                          stroke="url(#growthLineGrad)"
+                          strokeWidth="3.5"
+                          strokeLinecap="round"
+                          filter="url(#glowGlow)"
+                          className="growth-curve-path"
+                        />
+
+                        {/* Active Growth Nodes */}
+                        <circle cx="340" cy="90" r="5" fill="#8CC8A8" className="growth-node" />
+                        <circle cx="520" cy="18" r="7" fill="#F08C76" className="growth-peak-node" />
+                      </svg>
+
+                      {/* Callout Badges inside chart */}
+                      <div className="launch-flag-tag">
+                        <span>⚡ Launch Point</span>
                       </div>
+                      <div className="growth-peak-tag">
+                        <span>🚀 +340% Sales Volume</span>
+                      </div>
+                    </div>
+
+                    <div className="chart-timeline-labels">
+                      <span>Q1: Traditional / No Site</span>
+                      <span>Q2: Platform Launch</span>
+                      <span>Q3: Automated Lead Flow</span>
+                      <span>Q4: Market Leadership</span>
                     </div>
                   </div>
 
-                  <div className="console-flow">
-                    <div>
-                      <span>System Status</span>
-                      <b>High Availability</b>
+                  {/* Before vs After Split Comparison Grid */}
+                  <div className="before-after-grid">
+                    <div className="comparison-card before-card">
+                      <div className="comparison-badge before-badge">
+                        <span>BEFORE</span>
+                        <b>Without Modern Platform</b>
+                      </div>
+                      <ul className="comparison-list">
+                        <li>
+                          <span className="x-icon">✕</span>
+                          <span>Slow manual phone &amp; paper tracking</span>
+                        </li>
+                        <li>
+                          <span className="x-icon">✕</span>
+                          <span>Weak 1.2% visitor conversion rate</span>
+                        </li>
+                        <li>
+                          <span className="x-icon">✕</span>
+                          <span>Zero 24/7 automated lead capture</span>
+                        </li>
+                      </ul>
                     </div>
-                    <div>
-                      <span>Deployment Pipeline</span>
-                      <b>CI/CD Active</b>
+
+                    <div className="comparison-card after-card">
+                      <div className="comparison-badge after-badge">
+                        <span>AFTER</span>
+                        <b>StackWebApp Digital Engine</b>
+                      </div>
+                      <ul className="comparison-list">
+                        <li>
+                          <span className="check-icon">✓</span>
+                          <span>24/7 Automated client bookings &amp; sales</span>
+                        </li>
+                        <li>
+                          <span className="check-icon">✓</span>
+                          <span>3.8x High-converting responsive UX</span>
+                        </li>
+                        <li>
+                          <span className="check-icon">✓</span>
+                          <span>Sub-second FCP &amp; top SEO visibility</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Bottom Live Growth Tickers */}
+                  <div className="growth-tickers">
+                    <div className="growth-ticker-item">
+                      <span className="ticker-label">Monthly Inquiries</span>
+                      <div className="ticker-values">
+                        <span className="old-val">18/mo</span>
+                        <span className="ticker-arrow">→</span>
+                        <strong className="new-val">260+/mo</strong>
+                      </div>
+                      <div className="ticker-bar"><i style={{ width: "95%" }} /></div>
+                    </div>
+
+                    <div className="growth-ticker-item">
+                      <span className="ticker-label">Lead Conversion</span>
+                      <div className="ticker-values">
+                        <span className="old-val">1.2%</span>
+                        <span className="ticker-arrow">→</span>
+                        <strong className="new-val">4.8%</strong>
+                      </div>
+                      <div className="ticker-bar"><i style={{ width: "88%" }} /></div>
+                    </div>
+
+                    <div className="growth-ticker-item">
+                      <span className="ticker-label">Operations Automated</span>
+                      <div className="ticker-values">
+                        <span className="old-val">20%</span>
+                        <span className="ticker-arrow">→</span>
+                        <strong className="new-val">92%</strong>
+                      </div>
+                      <div className="ticker-bar"><i style={{ width: "92%" }} /></div>
                     </div>
                   </div>
                 </div>

@@ -92,8 +92,8 @@ async function runSourceTests() {
   assert.match(page, /We Build Digital Products That Move Businesses Forward\./, "hero heading must match master prompt");
   assert.doesNotMatch(page, /hero-eyebrow|DIGITAL ENGINEERING & DEVELOPMENT STUDIO/, "hero eyebrow must be removed as requested");
   assert.doesNotMatch(page, /hero-highlights|Custom-Built Solutions/, "hero highlights must be removed as requested");
-  assert.match(page, /code-editor-card/, "hero console must include the code editor preview");
-  assert.match(page, /stack\.config\.ts/, "hero console code editor must display project configuration");
+  assert.match(page, /growth-visualizer|growth-shell/, "hero must include the animated business growth visualizer");
+  assert.match(page, /Before Website|After StackWebApp Launch|\+340% Revenue Growth/, "growth visualizer must illustrate before vs after website sales growth");
   assert.match(page, /Start Your Project/, "hero primary CTA must be Start Your Project");
   assert.match(page, /Explore Our Work/, "hero secondary CTA must be Explore Our Work");
 
