@@ -737,8 +737,7 @@ export default function Home() {
                 </h1>
 
                 <p className="hero-lead">
-                  We design and develop modern websites, custom web applications, e-commerce platforms,
-                  and mobile applications that solve real business problems and create opportunities for growth.
+                  From ambitious ideas to powerful digital experiences — we design, develop, and deliver technology that moves businesses forward.
                 </p>
 
                 <div className="hero-actions">
