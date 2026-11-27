@@ -89,7 +89,7 @@ async function runSourceTests() {
 
   // 3. HOMEPAGE 11 SECTIONS VERIFICATION
   // Section 1: Hero
-  assert.match(page, /We Build Digital Products That Move Businesses Forward\./, "hero heading must match master prompt");
+  assert.match(page, /Ideas In\. Innovation Out\./, "hero heading must match master prompt");
   assert.doesNotMatch(page, /hero-eyebrow|DIGITAL ENGINEERING & DEVELOPMENT STUDIO/, "hero eyebrow must be removed as requested");
   assert.doesNotMatch(page, /hero-highlights|Custom-Built Solutions/, "hero highlights must be removed as requested");
   assert.match(page, /growth-visualizer|growth-shell/, "hero must include the animated business growth visualizer");

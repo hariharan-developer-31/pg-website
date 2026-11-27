@@ -28,7 +28,7 @@ html {
 }
 
 section, [id] {
-  scroll-margin-top: clamp(100px, 12vh, 130px);
+  scroll-margin-top: clamp(120px, 14vh, 160px);
 }
 
 body {
@@ -317,7 +317,7 @@ button, input, textarea, select {
    3. SECTION SHARED STYLES
    ========================================================================= */
 section {
-  padding: clamp(80px, 7vw, 124px) clamp(16px, 4vw, 54px);
+  padding: clamp(100px, 8vw, 136px) clamp(16px, 4vw, 54px);
 }
 
 .section-inner {
@@ -449,7 +449,7 @@ section {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 580px) minmax(420px, 640px);
+  grid-template-columns: minmax(0, 620px) minmax(420px, 640px);
   align-items: center;
   justify-content: space-between;
   gap: clamp(24px, 5vw, 70px);
@@ -457,7 +457,7 @@ section {
 }
 
 .hero-copy {
-  width: min(580px, 100%);
+  width: min(620px, 100%);
   align-self: center;
 }
 
@@ -482,11 +482,11 @@ section {
 }
 
 .hero-title {
-  font-size: clamp(38px, 3.8vw, 58px);
-  line-height: 1.08;
-  font-weight: 800;
-  max-width: 640px;
-  letter-spacing: -0.5px;
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: 1.04;
+  font-weight: 850;
+  max-width: 680px;
+  letter-spacing: -1.2px;
   padding-bottom: 0.08em;
 }
 
@@ -551,8 +551,8 @@ section {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  margin-top: 26px;
+  gap: 14px;
+  margin-top: 28px;
 }
 
 .cta-btn {
@@ -564,10 +564,11 @@ section {
   background: var(--ink);
   cursor: pointer;
   border-radius: 999px;
-  padding: 5px 5px 5px 24px;
-  gap: 16px;
+  min-height: 52px;
+  padding: 6px 7px 6px 22px;
+  gap: 14px;
   color: var(--paper);
-  box-shadow: 0 18px 44px rgba(17, 17, 17, 0.18);
+  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.18);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -576,27 +577,36 @@ section {
 .cta-btn:hover {
   transform: translateY(-2px);
   background: #242424;
-  box-shadow: 0 22px 56px rgba(17, 17, 17, 0.24);
+  box-shadow: 0 20px 50px rgba(17, 17, 17, 0.24);
 }
 
 .cta-text {
   position: relative;
   z-index: 1;
-  font-weight: 900;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: -0.2px;
   white-space: nowrap;
 }
 
 .cta-circle {
   position: relative;
   z-index: 1;
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
   border-radius: 50%;
   background: var(--blue);
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.cta-circle svg {
+  display: block;
+  width: 15px;
+  height: 15px;
 }
 
 .cta-btn:hover .cta-circle {
@@ -607,12 +617,15 @@ section {
 .ghost-link {
   display: inline-flex;
   align-items: center;
-  min-height: 58px;
+  justify-content: center;
+  min-height: 52px;
   border-radius: 999px;
   border: 1px solid rgba(17, 17, 17, 0.14);
   background: rgba(255, 255, 255, 0.6);
   color: var(--ink);
-  font-weight: 900;
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: -0.2px;
   padding: 0 24px;
   box-shadow: 0 12px 34px rgba(28, 87, 150, 0.08);
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
@@ -716,6 +729,7 @@ section {
 
 /* Chart Container */
 .growth-chart-container {
+  --scroll-draw: 0.35;
   position: relative;
   z-index: 2;
   background: rgba(10, 12, 16, 0.85);
@@ -723,6 +737,12 @@ section {
   border-radius: 12px;
   padding: 14px 14px 10px;
   margin-bottom: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.growth-chart-container.chart-running {
+  border-color: rgba(117, 197, 222, 0.45);
+  box-shadow: 0 0 28px rgba(117, 197, 222, 0.18);
 }
 
 .chart-legend {
@@ -775,24 +795,38 @@ section {
 }
 
 .growth-curve-path {
-  stroke-dasharray: 800;
-  stroke-dashoffset: 800;
-  animation: drawCurve 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.4s;
+  stroke-dasharray: 600;
+  stroke-dashoffset: calc(600px * (1 - var(--scroll-draw, 0.35)));
+  transition: stroke-dashoffset 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: stroke-dashoffset;
 }
 
-@keyframes drawCurve {
-  to { stroke-dashoffset: 0; }
+.growth-running-beam {
+  stroke-dasharray: 14 24;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: drop-shadow(0 0 6px #75C5DE);
+  pointer-events: none;
+}
+
+.growth-chart-container.chart-running .growth-running-beam {
+  opacity: 0.95;
+  animation: graphRunningStream 0.75s linear infinite;
+}
+
+@keyframes graphRunningStream {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -76;
+  }
 }
 
 .growth-fill-path {
-  opacity: 0;
-  animation: fadeInArea 1s ease forwards;
-  animation-delay: 1.6s;
-}
-
-@keyframes fadeInArea {
-  to { opacity: 1; }
+  opacity: calc(0.15 + var(--scroll-draw, 0.35) * 0.85);
+  transition: opacity 0.25s ease;
 }
 
 .launch-pulse-node {
@@ -801,6 +835,16 @@ section {
 
 .growth-peak-node {
   animation: peakGlow 2s infinite;
+  transition: r 0.25s ease;
+}
+
+.growth-chart-container.chart-running .growth-peak-node {
+  animation: peakRunning 0.75s ease-in-out infinite alternate;
+}
+
+@keyframes peakRunning {
+  from { r: 7; filter: drop-shadow(0 0 4px #F08C76); }
+  to { r: 10; filter: drop-shadow(0 0 16px #F08C76); }
 }
 
 @keyframes nodeGlow {
@@ -844,6 +888,12 @@ section {
   pointer-events: none;
   white-space: nowrap;
   animation: floatPeak 3s ease-in-out infinite;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.growth-chart-container.chart-running .growth-peak-tag {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(240, 140, 118, 0.5);
 }
 
 @keyframes floatPeak {
@@ -2434,11 +2484,13 @@ input:focus, textarea:focus, select:focus {
   }
 
   .hero-title {
-    font-size: clamp(34px, 7vw, 56px);
+    font-size: clamp(42px, 8.4vw, 62px);
     max-width: 720px;
     margin: 0 auto;
     text-align: center;
     width: 100%;
+    line-height: 1.05;
+    letter-spacing: -1px;
   }
 
   .hero-lead {
@@ -2602,9 +2654,9 @@ input:focus, textarea:focus, select:focus {
 
   .hero-title {
     width: 100%;
-    font-size: clamp(25px, 6.8vw, 34px);
-    line-height: 1.12;
-    letter-spacing: -0.5px;
+    font-size: clamp(34px, 9.6vw, 46px);
+    line-height: 1.06;
+    letter-spacing: -0.8px;
     text-align: center;
   }
 
@@ -2628,21 +2680,22 @@ input:focus, textarea:focus, select:focus {
     width: 100%;
     max-width: 440px;
     margin: 18px auto 0;
-    gap: 10px;
+    gap: 8px;
   }
 
   .cta-btn {
     width: 100%;
     min-width: 0;
-    min-height: 48px;
-    justify-content: center;
-    padding: 4px 6px 4px 12px;
+    min-height: 46px;
+    justify-content: space-between;
+    padding: 4px 5px 4px 13px;
     gap: 6px;
   }
 
   .cta-text {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
+    letter-spacing: -0.2px;
     white-space: nowrap;
   }
 
@@ -2653,17 +2706,18 @@ input:focus, textarea:focus, select:focus {
   }
 
   .cta-circle svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
   }
 
   .ghost-link {
     width: 100%;
-    min-height: 48px;
+    min-height: 46px;
     justify-content: center;
-    padding: 0 10px;
-    font-size: 13px;
+    padding: 0 8px;
+    font-size: 12px;
     font-weight: 700;
+    letter-spacing: -0.2px;
     text-align: center;
     white-space: nowrap;
   }
@@ -2816,7 +2870,7 @@ input:focus, textarea:focus, select:focus {
 /* Very Small Mobile (<390px) */
 @media (max-width: 390px) {
   .hero-title {
-    font-size: clamp(20px, 5.8vw, 24px);
+    font-size: clamp(28px, 8.8vw, 34px);
   }
 
   .hero-actions {
@@ -2824,12 +2878,14 @@ input:focus, textarea:focus, select:focus {
   }
 
   .cta-btn {
-    padding: 4px 4px 4px 8px;
+    min-height: 42px;
+    padding: 4px 5px 4px 9px;
     gap: 4px;
   }
 
   .cta-text {
-    font-size: 11.5px;
+    font-size: 11px;
+    letter-spacing: -0.2px;
   }
 
   .cta-circle {
@@ -2839,12 +2895,14 @@ input:focus, textarea:focus, select:focus {
   }
 
   .cta-circle svg {
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
   }
 
   .ghost-link {
-    font-size: 11.5px;
+    min-height: 42px;
+    font-size: 11px;
+    letter-spacing: -0.2px;
     padding: 0 6px;
   }
 }
@@ -2875,8 +2933,8 @@ input:focus, textarea:focus, select:focus {
   }
 
   .hero-title {
-    font-size: clamp(52px, 3.6vw, 72px);
-    max-width: 760px;
+    font-size: clamp(64px, 4.2vw, 86px);
+    max-width: 820px;
   }
 
   .hero-lead {
@@ -2931,9 +2989,9 @@ input:focus, textarea:focus, select:focus {
   }
 
   .hero-title {
-    font-size: clamp(68px, 3.2vw, 96px);
-    max-width: 1050px;
-    letter-spacing: -1px;
+    font-size: clamp(84px, 3.8vw, 114px);
+    max-width: 1200px;
+    letter-spacing: -2px;
   }
 
   .hero-lead {
@@ -2944,24 +3002,27 @@ input:focus, textarea:focus, select:focus {
   }
 
   .cta-btn {
-    min-height: 62px;
-    padding: 6px 8px 6px 28px;
+    min-height: 60px;
+    padding: 7px 8px 7px 28px;
+    gap: 16px;
   }
 
   .cta-text {
-    font-size: 17px;
+    font-size: 16px;
+    font-weight: 700;
   }
 
   .cta-circle {
-    width: 46px;
-    height: 46px;
-    flex: 0 0 46px;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
   }
 
   .ghost-link {
-    min-height: 62px;
-    padding: 0 32px;
-    font-size: 17px;
+    min-height: 60px;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 700;
   }
 
   .hero-console {

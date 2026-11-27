@@ -487,13 +487,14 @@ export default function Home() {
   const [sending, setSending] = useState(false);
 
   const heroWords = useMemo(
-    () => "We Build Digital Products That Move Businesses Forward.".split(" "),
+    () => "Ideas In. Innovation Out.".split(" "),
     []
   );
 
   useEffect(() => {
     let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
     let ticking = false;
+    let scrollTimer = null;
 
     const handleScroll = () => {
       if (!ticking) {
@@ -507,6 +508,20 @@ export default function Home() {
             setHeaderVisible(true);
           }
           lastScrollY = currentScrollY;
+
+          // Interactive running graph animation while scrolling
+          const chartEl = document.querySelector(".growth-chart-container");
+          if (chartEl) {
+            chartEl.classList.add("chart-running");
+            const progress = Math.min(1, Math.max(0, currentScrollY / 260));
+            chartEl.style.setProperty("--scroll-draw", (0.35 + progress * 0.65).toFixed(3));
+            
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+              chartEl.classList.remove("chart-running");
+            }, 600);
+          }
+
           ticking = false;
         });
         ticking = true;
@@ -514,7 +529,10 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      clearTimeout(scrollTimer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -707,24 +725,14 @@ export default function Home() {
           <div className="hero-inner">
             <div className="hero-layout">
               <div className="hero-copy">
-                <h1 className="hero-title" aria-label="We Build Digital Products That Move Businesses Forward.">
+                <h1 className="hero-title" aria-label="Ideas In. Innovation Out.">
                   <span className="hero-title-line">
-                    <span className="word" style={{ animationDelay: "0.90s" }}>We</span>
-                    <span className="word" style={{ animationDelay: "0.94s" }}>Build</span>
+                    <span className="word" style={{ animationDelay: "0.90s" }}>Ideas</span>
+                    <span className="word" style={{ animationDelay: "0.96s" }}>In.</span>
                   </span>
                   <span className="hero-title-line">
-                    <span className="word hero-highlight" style={{ animationDelay: "0.98s" }}>Digital</span>
-                    <span className="word hero-highlight" style={{ animationDelay: "1.02s" }}>Products</span>
-                  </span>
-                  <span className="hero-title-line">
-                    <span className="word" style={{ animationDelay: "1.06s" }}>That</span>
-                    <span className="word hero-highlight" style={{ animationDelay: "1.10s" }}>Move</span>
-                  </span>
-                  <span className="hero-title-line">
-                    <span className="word" style={{ animationDelay: "1.14s" }}>Businesses</span>
-                  </span>
-                  <span className="hero-title-line">
-                    <span className="word hero-highlight" style={{ animationDelay: "1.18s" }}>Forward.</span>
+                    <span className="word hero-highlight" style={{ animationDelay: "1.04s" }}>Innovation</span>
+                    <span className="word hero-highlight" style={{ animationDelay: "1.12s" }}>Out.</span>
                   </span>
                 </h1>
 
@@ -761,18 +769,6 @@ export default function Home() {
                 aria-label="StackWebApp business growth and sales impact visualizer"
               >
                 <div className="growth-shell">
-                  {/* Visualizer Top Bar */}
-                  <div className="growth-top-bar">
-                    <div className="growth-badge">
-                      <span className="growth-pulse-dot" />
-                      <span>Verified Business Impact</span>
-                    </div>
-                    <div className="growth-stat-pill">
-                      <span className="growth-stat-icon">📈</span>
-                      <strong>+340% Revenue Growth</strong>
-                    </div>
-                  </div>
-
                   {/* Dynamic Graphic Chart: Before vs After Trajectory */}
                   <div className="growth-chart-container">
                     <div className="chart-legend">
@@ -844,6 +840,15 @@ export default function Home() {
                           className="growth-curve-path"
                         />
 
+                        {/* Running Telemetry Stream (Active on Scroll) */}
+                        <path
+                          d="M 20 180 L 180 175 C 230 175, 270 140, 340 90 C 410 40, 470 24, 520 18"
+                          stroke="#ffffff"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          className="growth-running-beam"
+                        />
+
                         {/* Active Growth Nodes */}
                         <circle cx="340" cy="90" r="5" fill="#8CC8A8" className="growth-node" />
                         <circle cx="520" cy="18" r="7" fill="#F08C76" className="growth-peak-node" />
@@ -854,7 +859,7 @@ export default function Home() {
                         <span>⚡ Launch Point</span>
                       </div>
                       <div className="growth-peak-tag">
-                        <span>🚀 +340% Sales Volume</span>
+                        <span>🚀 +340% Revenue Growth</span>
                       </div>
                     </div>
 
@@ -908,39 +913,6 @@ export default function Home() {
                           <span>Sub-second FCP &amp; top SEO visibility</span>
                         </li>
                       </ul>
-                    </div>
-                  </div>
-
-                  {/* Bottom Live Growth Tickers */}
-                  <div className="growth-tickers">
-                    <div className="growth-ticker-item">
-                      <span className="ticker-label">Monthly Inquiries</span>
-                      <div className="ticker-values">
-                        <span className="old-val">18/mo</span>
-                        <span className="ticker-arrow">→</span>
-                        <strong className="new-val">260+/mo</strong>
-                      </div>
-                      <div className="ticker-bar"><i style={{ width: "95%" }} /></div>
-                    </div>
-
-                    <div className="growth-ticker-item">
-                      <span className="ticker-label">Lead Conversion</span>
-                      <div className="ticker-values">
-                        <span className="old-val">1.2%</span>
-                        <span className="ticker-arrow">→</span>
-                        <strong className="new-val">4.8%</strong>
-                      </div>
-                      <div className="ticker-bar"><i style={{ width: "88%" }} /></div>
-                    </div>
-
-                    <div className="growth-ticker-item">
-                      <span className="ticker-label">Operations Automated</span>
-                      <div className="ticker-values">
-                        <span className="old-val">20%</span>
-                        <span className="ticker-arrow">→</span>
-                        <strong className="new-val">92%</strong>
-                      </div>
-                      <div className="ticker-bar"><i style={{ width: "92%" }} /></div>
                     </div>
                   </div>
                 </div>
