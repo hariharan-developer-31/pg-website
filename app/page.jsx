@@ -477,6 +477,7 @@ const policies = {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
   const [activeFilter, setActiveFilter] = useState("All Projects");
   const [openFaq, setOpenFaq] = useState(0);
   const [selectedService, setSelectedService] = useState("");
@@ -489,6 +490,32 @@ export default function Home() {
     () => "We Build Digital Products That Move Businesses Forward.".split(" "),
     []
   );
+
+  useEffect(() => {
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (currentScrollY < 60) {
+            setHeaderVisible(true);
+          } else if (currentScrollY > lastScrollY + 10) {
+            setHeaderVisible(false);
+          } else if (currentScrollY < lastScrollY - 10) {
+            setHeaderVisible(true);
+          }
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (menuOpen || activePolicyModal) {
@@ -597,7 +624,11 @@ export default function Home() {
       </div>
 
       {/* Site Header */}
-      <header className={`site-header ${menuOpen ? "menu-active" : ""}`}>
+      <header
+        className={`site-header ${menuOpen ? "menu-active" : ""} ${
+          headerVisible || menuOpen ? "header-visible" : "header-hidden"
+        }`}
+      >
         <a className="brand desktop-brand" href="#top" aria-label="StackWebApp home">
           <img
             className="brand-logo-image"
@@ -688,7 +719,7 @@ export default function Home() {
                         >
                           {word}
                         </span>
-                        {(word === "Products" || word === "Businesses") && (
+                        {word === "Products" && (
                           <br className="mobile-title-break" />
                         )}
                       </Fragment>

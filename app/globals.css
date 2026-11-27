@@ -28,7 +28,7 @@ html {
 }
 
 section, [id] {
-  scroll-margin-top: clamp(80px, 12vh, 120px);
+  scroll-margin-top: clamp(100px, 12vh, 130px);
 }
 
 body {
@@ -130,6 +130,16 @@ button, input, textarea, select {
   justify-content: center;
   padding: 18px clamp(16px, 4vw, 54px);
   pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  will-change: transform;
+}
+
+.site-header.header-hidden {
+  transform: translateY(-130%);
+}
+
+.site-header.header-visible {
+  transform: translateY(0);
 }
 
 .brand, .nav-pill, .header-cta, .menu-btn {
@@ -307,7 +317,7 @@ button, input, textarea, select {
    3. SECTION SHARED STYLES
    ========================================================================= */
 section {
-  padding: clamp(66px, 8vw, 118px) clamp(16px, 4vw, 54px);
+  padding: clamp(80px, 7vw, 124px) clamp(16px, 4vw, 54px);
 }
 
 .section-inner {
@@ -2097,16 +2107,83 @@ input:focus, textarea:focus, select:focus {
   .hero-inner {
     height: 100%;
     min-height: 0;
+    display: flex;
     align-items: center;
+    justify-content: flex-start;
     padding-top: 100px;
     padding-bottom: 34px;
+    text-align: left;
   }
 
   .hero-layout {
+    display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(400px, 620px);
     align-items: center;
     gap: clamp(32px, 4.5vw, 64px);
     transform: translateY(-24px);
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .hero-copy {
+    display: block;
+    width: min(580px, 100%);
+    text-align: left;
+    margin: 0;
+  }
+
+  .hero-title {
+    text-align: left;
+    margin: 0;
+  }
+
+  .hero-lead {
+    text-align: left;
+    margin: 18px 0 0;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 24px;
+  }
+
+  .hero-console {
+    justify-self: end;
+    margin: 0;
+  }
+
+  .console-kpis div {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .console-kpis span, .console-kpis strong {
+    text-align: left;
+  }
+
+  .rent-card {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .rent-card span, .rent-card strong {
+    text-align: left;
+  }
+
+  .rent-bars {
+    justify-content: flex-start;
+    margin: 0;
+  }
+
+  .console-flow div {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .console-flow span, .console-flow b {
+    text-align: left;
   }
 }
 
@@ -2182,17 +2259,30 @@ input:focus, textarea:focus, select:focus {
     height: auto;
     min-height: 100vh;
     padding: clamp(90px, 12vh, 110px) clamp(16px, 4vw, 32px) 44px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .hero-layout {
-    grid-template-columns: 1fr;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
     gap: clamp(24px, 4vw, 36px);
     transform: none;
+    text-align: center;
   }
 
   .hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: min(720px, 100%);
     margin: 0 auto;
     text-align: center;
@@ -2206,6 +2296,8 @@ input:focus, textarea:focus, select:focus {
     font-size: clamp(34px, 7vw, 56px);
     max-width: 720px;
     margin: 0 auto;
+    text-align: center;
+    width: 100%;
   }
 
   .hero-lead {
@@ -2213,6 +2305,8 @@ input:focus, textarea:focus, select:focus {
     line-height: 1.55;
     margin: 16px auto 0;
     max-width: 580px;
+    text-align: center;
+    width: 100%;
   }
 
   .hero-highlights {
@@ -2220,18 +2314,66 @@ input:focus, textarea:focus, select:focus {
   }
 
   .hero-actions {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    width: 100%;
     margin-top: 24px;
+    gap: 12px;
   }
 
   .hero-console {
     width: min(100%, 680px);
     margin: 10px auto 0;
-    justify-self: stretch;
+    align-self: center;
   }
 
   .console-shell {
     animation: none;
+  }
+
+  .console-kpis div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .console-kpis span, .console-kpis strong {
+    text-align: center;
+    width: 100%;
+  }
+
+  .rent-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .rent-card span, .rent-card strong {
+    text-align: center;
+    width: 100%;
+  }
+
+  .rent-bars {
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .console-flow div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .console-flow span, .console-flow b {
+    text-align: center;
   }
 
   .flow-progress-beam {
@@ -2381,6 +2523,7 @@ input:focus, textarea:focus, select:focus {
   .hero-actions {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     max-width: 440px;
     margin: 22px auto 0;
@@ -2391,9 +2534,9 @@ input:focus, textarea:focus, select:focus {
     width: 100%;
     min-width: 0;
     min-height: 52px;
-    justify-content: space-between;
-    padding: 4px 6px 4px 18px;
-    gap: 6px;
+    justify-content: center;
+    padding: 4px 18px;
+    gap: 12px;
   }
 
   .cta-text {
