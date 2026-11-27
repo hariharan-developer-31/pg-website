@@ -781,59 +781,84 @@ export default function Home() {
               >
                 {/* Bigger Graph Showcase Device with 12px Border Radius */}
                 <div className="growth-shell growth-chart-container">
+                  {/* Top Telemetry Header */}
+                  <div className="growth-top-telemetry">
+                    <div className="telemetry-live-badge">
+                      <span className="live-pulsar" />
+                      <span className="telemetry-label">Live Performance Engine</span>
+                    </div>
+                    <div className="telemetry-meta">
+                      <span className="telemetry-pill">12-Month Impact Analysis</span>
+                    </div>
+                  </div>
+
                   <div className="chart-svg-wrap">
-                    <svg viewBox="0 0 600 260" className="growth-svg" fill="none" preserveAspectRatio="none">
+                    <svg viewBox="0 0 660 320" className="growth-svg" fill="none" preserveAspectRatio="none">
                       <defs>
                         <linearGradient id="growthAreaGrad" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stopColor="#75C5DE" stopOpacity="0.45" />
-                          <stop offset="60%" stopColor="#8CC8A8" stopOpacity="0.15" />
+                          <stop offset="50%" stopColor="#8CC8A8" stopOpacity="0.18" />
                           <stop offset="100%" stopColor="#8CC8A8" stopOpacity="0.0" />
                         </linearGradient>
                         <linearGradient id="growthLineGrad" x1="0" y1="0" x2="1" y2="0">
-                          <stop offset="0%" stopColor="#94a3b8" />
-                          <stop offset="35%" stopColor="#75C5DE" />
-                          <stop offset="70%" stopColor="#8CC8A8" />
+                          <stop offset="0%" stopColor="#64748b" />
+                          <stop offset="30%" stopColor="#75C5DE" />
+                          <stop offset="65%" stopColor="#8CC8A8" />
                           <stop offset="100%" stopColor="#F08C76" />
                         </linearGradient>
                         <filter id="glowGlow" x="-20%" y="-20%" width="140%" height="140%">
-                          <feGaussianBlur stdDeviation="4" result="blur" />
+                          <feGaussianBlur stdDeviation="5" result="blur" />
                           <feMerge>
                             <feMergeNode in="blur" />
                             <feMergeNode in="SourceGraphic" />
                           </feMerge>
                         </filter>
+                        <linearGradient id="gridDividerGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#75C5DE" stopOpacity="0.8" />
+                          <stop offset="100%" stopColor="#75C5DE" stopOpacity="0.1" />
+                        </linearGradient>
                       </defs>
 
-                      {/* Subtle Horizontal Grid Lines */}
-                      <line x1="20" y1="50" x2="580" y2="50" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                      <line x1="20" y1="110" x2="580" y2="110" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                      <line x1="20" y1="170" x2="580" y2="170" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                      <line x1="20" y1="228" x2="580" y2="228" stroke="rgba(244, 241, 232, 0.14)" />
+                      {/* Subtle Horizontal Grid Lines & Metrics */}
+                      <g className="chart-grid-group">
+                        <line x1="24" y1="55" x2="636" y2="55" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                        <line x1="24" y1="125" x2="636" y2="125" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                        <line x1="24" y1="195" x2="636" y2="195" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                        <line x1="24" y1="265" x2="636" y2="265" stroke="rgba(244, 241, 232, 0.12)" />
+                        <line x1="24" y1="288" x2="636" y2="288" stroke="rgba(244, 241, 232, 0.18)" />
+
+                        {/* Y-Axis Metric Benchmarks */}
+                        <text x="28" y="48" className="svg-axis-label">+340% Target Peak</text>
+                        <text x="28" y="118" className="svg-axis-label">+200% Automation Flow</text>
+                        <text x="28" y="188" className="svg-axis-label">+80% Post-Launch</text>
+                        <text x="28" y="258" className="svg-axis-label svg-axis-base">0% Baseline</text>
+                      </g>
 
                       {/* Growth Gradient Area */}
                       <path
-                        d="M 20 225 L 180 222 C 240 222, 280 170, 360 110 C 440 50, 520 26, 580 20 L 580 230 L 20 230 Z"
+                        d="M 24 280 L 195 276 C 265 276, 315 210, 405 130 C 495 50, 570 28, 636 22 L 636 288 L 24 288 Z"
                         fill="url(#growthAreaGrad)"
                         className="growth-fill-path"
                       />
 
                       {/* Before Website Flat Baseline (Dashed Red/Muted) */}
                       <path
-                        d="M 20 225 L 180 222 L 580 218"
-                        stroke="rgba(248, 113, 113, 0.6)"
+                        d="M 24 280 L 195 276 L 636 270"
+                        stroke="rgba(248, 113, 113, 0.65)"
                         strokeWidth="2.5"
                         strokeDasharray="5 5"
                       />
 
                       {/* Launch Event Dividing Line & Marker */}
-                      <line x1="180" y1="30" x2="180" y2="230" stroke="rgba(117, 197, 222, 0.35)" strokeDasharray="3 3" />
-                      <circle cx="180" cy="222" r="6" fill="#75C5DE" className="launch-pulse-node" />
+                      <line x1="195" y1="35" x2="195" y2="288" stroke="url(#gridDividerGrad)" strokeDasharray="3 3" />
+                      <circle cx="195" cy="276" r="6.5" fill="#75C5DE" className="launch-pulse-node" />
+                      <circle cx="195" cy="276" r="12" fill="none" stroke="#75C5DE" strokeOpacity="0.4" className="launch-pulse-ring" />
 
                       {/* After Website / Web App Surge Curve */}
                       <path
-                        d="M 20 225 L 180 222 C 240 222, 280 170, 360 110 C 440 50, 520 26, 580 20"
+                        d="M 24 280 L 195 276 C 265 276, 315 210, 405 130 C 495 50, 570 28, 636 22"
                         stroke="url(#growthLineGrad)"
-                        strokeWidth="3.5"
+                        strokeWidth="4"
                         strokeLinecap="round"
                         filter="url(#glowGlow)"
                         className="growth-curve-path"
@@ -841,7 +866,7 @@ export default function Home() {
 
                       {/* Running Telemetry Stream (Active on Scroll or Auto on Desktop) */}
                       <path
-                        d="M 20 225 L 180 222 C 240 222, 280 170, 360 110 C 440 50, 520 26, 580 20"
+                        d="M 24 280 L 195 276 C 265 276, 315 210, 405 130 C 495 50, 570 28, 636 22"
                         stroke="#ffffff"
                         strokeWidth="2.5"
                         strokeLinecap="round"
@@ -849,8 +874,9 @@ export default function Home() {
                       />
 
                       {/* Active Growth Nodes */}
-                      <circle cx="360" cy="110" r="5.5" fill="#8CC8A8" className="growth-node" />
-                      <circle cx="580" cy="20" r="7.5" fill="#F08C76" className="growth-peak-node" />
+                      <circle cx="405" cy="130" r="6" fill="#8CC8A8" className="growth-node" />
+                      <circle cx="636" cy="22" r="8" fill="#F08C76" className="growth-peak-node" />
+                      <circle cx="636" cy="22" r="15" fill="none" stroke="#F08C76" strokeOpacity="0.35" className="peak-pulse-ring" />
                     </svg>
 
                     {/* Callout Badges inside chart */}
@@ -863,10 +889,10 @@ export default function Home() {
                   </div>
 
                   <div className="chart-timeline-labels">
-                    <span>Q1: Traditional / No Site</span>
-                    <span>Q2: Platform Launch</span>
-                    <span>Q3: Automated Lead Flow</span>
-                    <span>Q4: Market Leadership</span>
+                    <span className="timeline-item"><i className="t-dot dot-stagnant" />Q1: Traditional / Stagnant</span>
+                    <span className="timeline-item"><i className="t-dot dot-launch" />Q2: Platform Launch</span>
+                    <span className="timeline-item"><i className="t-dot dot-scale" />Q3: Automated Lead Engine</span>
+                    <span className="timeline-item"><i className="t-dot dot-peak" />Q4: Market Leadership</span>
                   </div>
                 </div>
               </div>
@@ -943,9 +969,11 @@ export default function Home() {
                     <button
                       type="button"
                       className="service-select-btn"
+                      aria-label={`Discuss ${service.title}`}
+                      title={`Discuss ${service.title}`}
                       onClick={() => handleServiceSelect(service.title)}
                     >
-                      Discuss Project →
+                      <span className="service-arrow" aria-hidden="true">→</span>
                     </button>
                   </div>
                   <h3>{service.title}</h3>
@@ -959,6 +987,12 @@ export default function Home() {
                   </div>
                 </article>
               ))}
+            </div>
+
+            <div className="services-swipe-hint" aria-hidden="true">
+              <span className="swipe-arrow">←</span>
+              <span>Swipe to explore services</span>
+              <span className="swipe-arrow">→</span>
             </div>
           </div>
         </section>
@@ -1011,6 +1045,20 @@ export default function Home() {
             {/* Animative Step-by-Step Flow */}
             <div className="process-flow-track reveal">
               <div className="flow-progress-beam" aria-hidden="true" />
+
+              {/* Interactive Roadmap Stage Stepper */}
+              <div className="process-roadmap-stepper" aria-label="Development roadmap stages">
+                {processSteps.map((s, i) => (
+                  <Fragment key={s.num}>
+                    <div className="roadmap-stepper-item">
+                      <span className="stepper-dot" />
+                      <span className="stepper-label">{s.num} {s.phase.split(" ")[0]}</span>
+                    </div>
+                    {i < processSteps.length - 1 && <span className="stepper-line" aria-hidden="true" />}
+                  </Fragment>
+                ))}
+              </div>
+
               <div className="process-flow-grid">
                 {processSteps.map((step, index) => (
                   <div
@@ -1115,6 +1163,12 @@ export default function Home() {
                 </article>
               ))}
             </div>
+
+            <div className="portfolio-swipe-hint" aria-hidden="true">
+              <span className="swipe-arrow">←</span>
+              <span>Swipe to explore projects</span>
+              <span className="swipe-arrow">→</span>
+            </div>
           </div>
         </section>
 
@@ -1197,20 +1251,6 @@ export default function Home() {
                   Whether you need a business website, a custom web application, an e-commerce platform,
                   or a complete software solution, we're ready to help bring your vision to life.
                 </p>
-
-                <div className="direct-channels">
-                  <a className="direct-link" href="mailto:hariharansankar4@gmail.com">
-                    ✉ hariharansankar4@gmail.com
-                  </a>
-                  <a
-                    className="whatsapp-btn"
-                    href="https://wa.me/?text=Hello%20StackWebApp%2C%20I%20would%20like%20to%20discuss%20a%20development%20project."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>💬 Chat on WhatsApp</span>
-                  </a>
-                </div>
               </div>
 
               {/* Enquiry Form */}
@@ -1412,7 +1452,7 @@ export default function Home() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        WhatsApp Inquiries
+                        Chat on WhatsApp
                       </a>
                     </li>
                     <li>
