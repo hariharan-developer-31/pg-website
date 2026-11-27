@@ -749,7 +749,7 @@ export default function Home() {
                 </h1>
 
                 <p className="hero-lead">
-                  From ambitious ideas to powerful digital experiences — we design, develop, and deliver technology that moves businesses forward.
+                  From ambitious ideas to powerful digital experiences - we design, develop, and deliver technology that moves businesses forward.
                 </p>
 
                 <div className="hero-actions">
@@ -774,26 +774,15 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Animated Business Growth Visualizer: Separated Architecture */}
+              {/* Animated Business Growth Visualizer: Prominent Standalone Showcase */}
               <div
                 className="hero-console growth-visualizer reveal"
-                aria-label="StackWebApp business growth and sales impact visualizer"
+                aria-label="Before Website vs After StackWebApp Launch revenue growth curve showing +340% Revenue Growth"
               >
-                {/* PART 1: Bigger Graph Showcase Device (Direct Single Layer) */}
+                {/* Bigger Graph Showcase Device with 12px Border Radius */}
                 <div className="growth-shell growth-chart-container">
-                  <div className="chart-legend">
-                    <div className="legend-item legend-before">
-                      <span className="legend-line line-before" />
-                      <span>Before Website (Flat Sales)</span>
-                    </div>
-                    <div className="legend-item legend-after">
-                      <span className="legend-line line-after" />
-                      <span>After StackWebApp Launch</span>
-                    </div>
-                  </div>
-
                   <div className="chart-svg-wrap">
-                    <svg viewBox="0 0 560 215" className="growth-svg" fill="none" preserveAspectRatio="none">
+                    <svg viewBox="0 0 600 260" className="growth-svg" fill="none" preserveAspectRatio="none">
                       <defs>
                         <linearGradient id="growthAreaGrad" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stopColor="#75C5DE" stopOpacity="0.45" />
@@ -815,34 +804,34 @@ export default function Home() {
                         </filter>
                       </defs>
 
-                      {/* Subtle Grid Lines */}
-                      <line x1="20" y1="40" x2="540" y2="40" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                      <line x1="20" y1="90" x2="540" y2="90" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                      <line x1="20" y1="140" x2="540" y2="140" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
-                      <line x1="20" y1="188" x2="540" y2="188" stroke="rgba(244, 241, 232, 0.14)" />
+                      {/* Subtle Horizontal Grid Lines */}
+                      <line x1="20" y1="50" x2="580" y2="50" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                      <line x1="20" y1="110" x2="580" y2="110" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                      <line x1="20" y1="170" x2="580" y2="170" stroke="rgba(244, 241, 232, 0.08)" strokeDasharray="3 3" />
+                      <line x1="20" y1="228" x2="580" y2="228" stroke="rgba(244, 241, 232, 0.14)" />
 
                       {/* Growth Gradient Area */}
                       <path
-                        d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18 L 540 188 L 20 188 Z"
+                        d="M 20 225 L 180 222 C 240 222, 280 170, 360 110 C 440 50, 520 26, 580 20 L 580 230 L 20 230 Z"
                         fill="url(#growthAreaGrad)"
                         className="growth-fill-path"
                       />
 
                       {/* Before Website Flat Baseline (Dashed Red/Muted) */}
                       <path
-                        d="M 20 184 L 180 180 L 540 176"
+                        d="M 20 225 L 180 222 L 580 218"
                         stroke="rgba(248, 113, 113, 0.6)"
                         strokeWidth="2.5"
                         strokeDasharray="5 5"
                       />
 
                       {/* Launch Event Dividing Line & Marker */}
-                      <line x1="180" y1="25" x2="180" y2="188" stroke="rgba(117, 197, 222, 0.35)" strokeDasharray="2 3" />
-                      <circle cx="180" cy="180" r="6" fill="#75C5DE" className="launch-pulse-node" />
+                      <line x1="180" y1="30" x2="180" y2="230" stroke="rgba(117, 197, 222, 0.35)" strokeDasharray="3 3" />
+                      <circle cx="180" cy="222" r="6" fill="#75C5DE" className="launch-pulse-node" />
 
                       {/* After Website / Web App Surge Curve */}
                       <path
-                        d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18"
+                        d="M 20 225 L 180 222 C 240 222, 280 170, 360 110 C 440 50, 520 26, 580 20"
                         stroke="url(#growthLineGrad)"
                         strokeWidth="3.5"
                         strokeLinecap="round"
@@ -852,7 +841,7 @@ export default function Home() {
 
                       {/* Running Telemetry Stream (Active on Scroll or Auto on Desktop) */}
                       <path
-                        d="M 20 184 L 180 180 C 230 180, 270 142, 340 92 C 410 42, 480 24, 540 18"
+                        d="M 20 225 L 180 222 C 240 222, 280 170, 360 110 C 440 50, 520 26, 580 20"
                         stroke="#ffffff"
                         strokeWidth="2.5"
                         strokeLinecap="round"
@@ -860,8 +849,8 @@ export default function Home() {
                       />
 
                       {/* Active Growth Nodes */}
-                      <circle cx="340" cy="92" r="5" fill="#8CC8A8" className="growth-node" />
-                      <circle cx="540" cy="18" r="7" fill="#F08C76" className="growth-peak-node" />
+                      <circle cx="360" cy="110" r="5.5" fill="#8CC8A8" className="growth-node" />
+                      <circle cx="580" cy="20" r="7.5" fill="#F08C76" className="growth-peak-node" />
                     </svg>
 
                     {/* Callout Badges inside chart */}
@@ -878,59 +867,6 @@ export default function Home() {
                     <span>Q2: Platform Launch</span>
                     <span>Q3: Automated Lead Flow</span>
                     <span>Q4: Market Leadership</span>
-                  </div>
-                </div>
-
-                {/* PART 2 & 3: Below Graph At Center — Left & Right Animative Tablets */}
-                <div className="tablet-comparison-row">
-                  {/* Left Tablet: BEFORE */}
-                  <div className="comparison-tablet tablet-before before-card">
-                    <div className="tablet-header comparison-badge before-badge">
-                      <div className="tablet-status">
-                        <span className="tablet-camera" />
-                        <span className="tablet-badge-pill">BEFORE</span>
-                      </div>
-                      <b className="tablet-title">Without Modern Platform</b>
-                    </div>
-                    <ul className="tablet-points comparison-list">
-                      <li>
-                        <span className="point-icon icon-x">✕</span>
-                        <span>Slow manual phone &amp; paper tracking</span>
-                      </li>
-                      <li>
-                        <span className="point-icon icon-x">✕</span>
-                        <span>Weak 1.2% visitor conversion rate</span>
-                      </li>
-                      <li>
-                        <span className="point-icon icon-x">✕</span>
-                        <span>Zero 24/7 automated lead capture</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* Right Tablet: AFTER */}
-                  <div className="comparison-tablet tablet-after after-card">
-                    <div className="tablet-header comparison-badge after-badge">
-                      <div className="tablet-status">
-                        <span className="tablet-camera camera-live" />
-                        <span className="tablet-badge-pill">AFTER</span>
-                      </div>
-                      <b className="tablet-title">StackWebApp Digital Engine</b>
-                    </div>
-                    <ul className="tablet-points comparison-list">
-                      <li>
-                        <span className="point-icon icon-check">✓</span>
-                        <span>24/7 Automated client bookings &amp; sales</span>
-                      </li>
-                      <li>
-                        <span className="point-icon icon-check">✓</span>
-                        <span>3.8x High-converting responsive UX</span>
-                      </li>
-                      <li>
-                        <span className="point-icon icon-check">✓</span>
-                        <span>Sub-second FCP &amp; top SEO visibility</span>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
